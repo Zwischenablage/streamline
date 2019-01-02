@@ -5,5 +5,36 @@
   <%= @customer.name %>
 </p>
 
+<h2>Add a Project:</h2>
+<%= link_to 'Add Project', new_customer_project_path(@customer) %>
+<br>
 <%= link_to 'Edit', edit_customer_path(@customer) %> |
 <%= link_to 'Back', customers_path %>
+
+
+<% if @customer.projects.size > 0 %>
+  <h2>Projects</h2>
+  <table class="table">
+    <tr>
+      <th>Project Name</th>
+      <th>Project Tier1</th>
+      <th>Project OEM</th>
+      <th></th>
+    </tr>
+<% end %>
+<% @customer.projects.each do |project| %>
+  <tr>
+    <td><%= project.name %></td>
+    <td><%= project.description %></td>
+    <td><%= project.oracleID %></td>
+    <td><%= project.created_at %></td>
+    <td><%= link_to 'Show', customer_project_path(@customer, project) %></td>
+    <td><%= link_to 'Edit', edit_customer_project_path(@customer, project) %></td>
+    <td><%= link_to 'Delete', customer_project_path(@customer, project),
+            method: :delete,
+            data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+<% if @customer.projects.size > 0 %>
+</table>
+<% end %>

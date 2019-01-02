@@ -10,10 +10,13 @@ class ProjectsController < ApplicationController
   # GET /projects/1
   # GET /projects/1.json
   def show
+    puts "SHOW!!!"
   end
 
   # GET /projects/new
   def new
+    puts "NEW@!!"
+    @customer = Customer.find(params[:customer_id])
     @project = Project.new
   end
 
@@ -24,11 +27,13 @@ class ProjectsController < ApplicationController
   # POST /projects
   # POST /projects.json
   def create
-    @project = Project.new(project_params)
+    puts "CReATE in projects controller"
+    @customer = Customer.find(params[:customer_id])
+    @project = @customer.projects.create(project_params)
 
     respond_to do |format|
       if @project.save
-        format.html { redirect_to @project, notice: 'Project was successfully created.' }
+        format.html { redirect_to customer_project_path(@customer, @project.id), notice: 'Project was successfully created.' }
         format.json { render :show, status: :created, location: @project }
       else
         format.html { render :new }
@@ -54,9 +59,10 @@ class ProjectsController < ApplicationController
   # DELETE /projects/1
   # DELETE /projects/1.json
   def destroy
+    @customer = Customer.find(params[:customer_id])
     @project.destroy
     respond_to do |format|
-      format.html { redirect_to projects_url, notice: 'Project was successfully destroyed.' }
+      format.html { redirect_to customer_path(@customer), notice: 'Project was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
