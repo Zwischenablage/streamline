@@ -26,6 +26,9 @@ not_null(unique(customername)) STRING
 Table(project, "project\n(project for user)") {
 primary_key(id) INTEGER
 not_null(customer_id) INTEGER
+name STRING
+description STRING
+oracleID Integer
 }
 
 Table(oem, "oem\n(oem for project)") {
@@ -33,7 +36,7 @@ primary_key(id) INTEGER
 not_null(unique(oemname)) STRING
 }
 
-Table(session, "session\n(Porting, APQM, Tuning)") {
+Table(session, "session") {
 primary_key(id) INTEGER
 primary_key(project_id) INTEGER
 primary_key(type_id) INTEGER
@@ -70,15 +73,36 @@ Table(user, "user")
   lastName STRING
 }
 
+Table(sessiontype, "sessiontype")
+{
+  primary_key(id) INTEGER
+  type STRING
+}
+
+Table(product, "product")
+{
+  primary_key(id) INTEGER
+  product STRING
+}
+
+Table(valuesetMap, "valuesetMap")
+{
+  primary_key(id) INTEGER
+  paramset INTEGER
+  valueset INTEGER
+}
+
 ' relationships
 ' one-to-one relationship
-project -- oem : " project has one OEM"
-session -- paramset : "a session has 1 paramset"
-session -- user : " done by"
+project "1" -- "1" oem : " project has one OEM"
+session "1" -- "1" sessiontype : "session type (Porting, APQM, Tuning)"
+session "1" -- "1" paramset : "a session has 1 paramset"
+session "1" -- "1" user : " done by"
+paramset "1" -- "1" product
 ' one to may relationship
-customer --> project : "A customer may have\n many sessions"
-project --> session : "Project may have\n many sessions"
-paramset --> valueset : "1 paramset may have many sessions"
+customer "1" --> "0..n" project : "A customer may have\n many sessions"
+project "1" --> "0..n" session : "Project may have\n many sessions"
+paramset "1" --> "0..n" valueset : "1 paramset may have many value sets"
 ' many to many relationship
 ' Add mark if you like
 'customer "1" --> "*" user_group : "A user may be \nin many groups"
