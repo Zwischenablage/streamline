@@ -1,0 +1,86 @@
+@startuml
+' uncomment the line below if you're using computer with a retina display
+' skinparam dpi 300
+!define Table(name,desc) class name as "desc" << (T,#FFAAAA) >>
+' we use bold for primary key
+' green color for unique
+' and underscore for not_null
+!define primary_key(x) <b>x</b>
+!define unique(x) <color:green>x</color>
+!define not_null(x) <u>x</u>
+' other tags available:
+' <i></i>
+' <back:COLOR></color>, where color is a color name or html color code
+' (#FFAACC)
+' see: http://plantuml.com/classes.html#More
+hide methods
+hide stereotypes
+' entities
+
+
+Table(customer, "customer\n(customer in our system)") {
+primary_key(id) INTEGER
+not_null(unique(customername)) STRING
+}
+
+Table(project, "project\n(project for user)") {
+primary_key(id) INTEGER
+not_null(customer_id) INTEGER
+}
+
+Table(oem, "oem\n(oem for project)") {
+primary_key(id) INTEGER
+not_null(unique(oemname)) STRING
+}
+
+Table(session, "session\n(Porting, APQM, Tuning)") {
+primary_key(id) INTEGER
+primary_key(project_id) INTEGER
+primary_key(type_id) INTEGER
+finished_at DATETIME
+vehicle STRING
+done_by(user_Id) INTEGER
+state INTEGER
+paramset(paramset_id) INTEGER
+}
+
+Table(paramset, "paramset")
+{
+  primary_key(id) INTEGER
+  productname STRING
+  productversion STRING
+  mode STRING
+  valueset(id)
+}
+
+Table(valueset, "Value Set")
+{
+  primary_key(id) INTEGER
+  name STRING
+  short_comment STRING
+  comment STRING
+  values STRING
+}
+
+Table(user, "user")
+{
+  primary_key(id) INTEGER
+  username STRING
+  firstName STRING
+  lastName STRING
+}
+
+' relationships
+' one-to-one relationship
+project -- oem : " project has one OEM"
+session -- paramset : "a session has 1 paramset"
+session -- user : " done by"
+' one to may relationship
+customer --> project : "A customer may have\n many sessions"
+project --> session : "Project may have\n many sessions"
+paramset --> valueset : "1 paramset may have many sessions"
+' many to many relationship
+' Add mark if you like
+'customer "1" --> "*" user_group : "A user may be \nin many groups"
+'group "1" --> "0..N" user_group : "A group may \ncontain many users"
+@enduml
