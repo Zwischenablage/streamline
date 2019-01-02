@@ -4,13 +4,16 @@ class ProjectsController < ApplicationController
   # GET /projects
   # GET /projects.json
   def index
+    @customer = Customer.find(params[:customer_id])
     @projects = Project.all
+
   end
 
   # GET /projects/1
   # GET /projects/1.json
   def show
     puts "SHOW!!!"
+    @customer = Customer.find(params[:customer_id])
   end
 
   # GET /projects/new
@@ -33,7 +36,7 @@ class ProjectsController < ApplicationController
 
     respond_to do |format|
       if @project.save
-        format.html { redirect_to customer_project_path(@customer, @project.id), notice: 'Project was successfully created.' }
+        format.html { redirect_to customer_projects_path(@customer), notice: 'Project was successfully created.' }
         format.json { render :show, status: :created, location: @project }
       else
         format.html { render :new }

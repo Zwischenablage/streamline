@@ -2,10 +2,10 @@ Rails.application.routes.draw do
   resources :oems
   resources :session_types
   resources :users
-  resources :sessions
-
   resources :customers do
-    resources :projects
+    resources :projects do
+      resources :sessions
+    end
   end
 
   get 'streamline/index'

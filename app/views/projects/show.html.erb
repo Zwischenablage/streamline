@@ -15,5 +15,34 @@
   <%= @project.oracleID %>
 </p>
 
+<h2>Add a Session:</h2>
+<%= link_to 'Add Session', new_customer_project_session_path(@customer, @project) %>
 <%= link_to 'Edit', edit_customer_project_path(@project) %> |
 <%= link_to 'Back', customer_projects_path %>
+
+<% if @project.sessions.size > 0 %>
+  <h2>Sessions</h2>
+  <table class="table">
+    <tr>
+      <th>Session Type</th>
+      <th>Finished At</th>
+      <th>Vehicle</th>
+      <th>State</th>
+    </tr>
+<% end %>
+<% @project.sessions.each do |session| %>
+  <tr>
+    <td><%= "TYPE" %></td>
+    <td><%= session.finished_at %></td>
+    <td><%= session.vehicle %></td>
+    <td><%= session.state %></td>
+    <td><%= link_to 'Show', customer_project_session_path(@customer, @project, session) %></td>
+    <td><%= link_to 'Edit', edit_customer_project_session_path(@customer,@project, session) %></td>
+    <td><%= link_to 'Delete', customer_project_session_path(@customer, @project, session),
+            method: :delete,
+            data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+<% if @project.sessions.size > 0 %>
+</table>
+<% end %>

@@ -10,10 +10,16 @@ class SessionsController < ApplicationController
   # GET /sessions/1
   # GET /sessions/1.json
   def show
+    puts "Session#SHOW"
+    @customer = Customer.find(params[:customer_id])
+    @project = Project.find(params[:project_id])
   end
 
   # GET /sessions/new
   def new
+    puts "Session#NEW"
+    @customer = Customer.find(params[:customer_id])
+    @project = Project.find(params[:project_id])
     @session = Session.new
   end
 
@@ -24,11 +30,14 @@ class SessionsController < ApplicationController
   # POST /sessions
   # POST /sessions.json
   def create
-    @session = Session.new(session_params)
+    puts "Session#CREATE"
+    @customer = Customer.find(params[:customer_id])
+    @project = Project.find(params[:project_id])
+    @session = @project.sessions.create(session_params)
 
     respond_to do |format|
       if @session.save
-        format.html { redirect_to @session, notice: 'Session was successfully created.' }
+        format.html { redirect_to customer_project_path(@customer, @project), notice: 'Session was successfully created.' }
         format.json { render :show, status: :created, location: @session }
       else
         format.html { render :new }
@@ -54,9 +63,11 @@ class SessionsController < ApplicationController
   # DELETE /sessions/1
   # DELETE /sessions/1.json
   def destroy
+    @customer = Customer.find(params[:customer_id])
+    @project = Project.find(params[:project_id])
     @session.destroy
     respond_to do |format|
-      format.html { redirect_to sessions_url, notice: 'Session was successfully destroyed.' }
+      format.html { redirect_to customer_project_path(@customer, @project), notice: 'Session was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

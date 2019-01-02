@@ -2,4 +2,4 @@
 
 <%= render 'form', session: @session %>
 
-<%= link_to 'Back', sessions_path %>
+<%= link_to 'Back', customer_projects_path(params[:customer_id], params[:project_id]) %>
