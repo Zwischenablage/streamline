@@ -1,0 +1,27 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Session Types</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Type</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @session_types.each do |session_type| %>
+      <tr>
+        <td><%= session_type.type %></td>
+        <td><%= link_to 'Show', session_type %></td>
+        <td><%= link_to 'Edit', edit_session_type_path(session_type) %></td>
+        <td><%= link_to 'Destroy', session_type, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Session Type', new_session_type_path %>

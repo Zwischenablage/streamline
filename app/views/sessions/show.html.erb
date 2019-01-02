@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Finished at:</strong>
+  <%= @session.finished_at %>
+</p>
+
+<p>
+  <strong>Vehicle:</strong>
+  <%= @session.vehicle %>
+</p>
+
+<p>
+  <strong>State:</strong>
+  <%= @session.state %>
+</p>
+
+<%= link_to 'Edit', edit_session_path(@session) %> |
+<%= link_to 'Back', sessions_path %>

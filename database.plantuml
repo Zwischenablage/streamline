@@ -28,7 +28,8 @@ primary_key(id) INTEGER
 not_null(customer_id) INTEGER
 name STRING
 description STRING
-oracleID Integer
+oracleID INTEGER
+created_at DATETIME
 }
 
 Table(oem, "oem\n(oem for project)") {
