@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_01_02_140511) do
+ActiveRecord::Schema.define(version: 2019_01_02_145755) do
 
   create_table "customers", force: :cascade do |t|
     t.string "name"
@@ -19,6 +19,22 @@ ActiveRecord::Schema.define(version: 2019_01_02_140511) do
   end
 
   create_table "oems", force: :cascade do |t|
+    t.string "name"
+    t.integer "project_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["project_id"], name: "index_oems_on_project_id"
+  end
+
+  create_table "param_sets", force: :cascade do |t|
+    t.string "productName"
+    t.string "productVersion"
+    t.string "mode"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "products", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -60,6 +76,24 @@ ActiveRecord::Schema.define(version: 2019_01_02_140511) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["session_id"], name: "index_users_on_session_id"
+  end
+
+  create_table "value_set_maps", force: :cascade do |t|
+    t.integer "param_set_id"
+    t.integer "value_set_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["param_set_id"], name: "index_value_set_maps_on_param_set_id"
+    t.index ["value_set_id"], name: "index_value_set_maps_on_value_set_id"
+  end
+
+  create_table "value_sets", force: :cascade do |t|
+    t.string "name"
+    t.string "shortComment"
+    t.string "comment"
+    t.text "value"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
 end

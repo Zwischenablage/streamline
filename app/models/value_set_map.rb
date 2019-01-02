@@ -1,0 +1,2 @@
+class ValueSetMap < ApplicationRecord
+end

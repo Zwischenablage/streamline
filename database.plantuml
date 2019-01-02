@@ -83,7 +83,7 @@ Table(sessiontype, "sessiontype")
 Table(product, "product")
 {
   primary_key(id) INTEGER
-  product STRING
+  name STRING
 }
 
 Table(valuesetMap, "valuesetMap")
