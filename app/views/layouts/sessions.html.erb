@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Streamline</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="<%= customers_path %>">Streamline</a></li>
+        <li class="breadcrumb-item"><a href="<%= customer_path(@customer) %>"><%= @customer.name %></a></li>
+        <li class="breadcrumb-item"><a href="<%= customer_project_path(@customer,@project) %>"><%= @project.name %></a></li>
+        <li class="breadcrumb-item active" aria-current="page"><%= "SESSION Name"%></li>
+      </ol>
+    </nav>
+    <%= yield %>
+  </body>
+</html>
