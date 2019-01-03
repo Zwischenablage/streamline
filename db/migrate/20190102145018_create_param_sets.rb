@@ -1,6 +1,6 @@
-class CreateParamsets < ActiveRecord::Migration[5.2]
+class CreateParamSets < ActiveRecord::Migration[5.2]
   def change
-    create_table :paramsets do |t|
+    create_table :param_sets do |t|
       t.string :productName
       t.string :productVersion
       t.string :mode

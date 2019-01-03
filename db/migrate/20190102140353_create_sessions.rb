@@ -8,7 +8,6 @@ class CreateSessions < ActiveRecord::Migration[5.2]
       t.integer :state
 
       t.belongs_to :project, foreign_key: true, index: true
-      t.references :param_set, foreign_key: true, index:true
       t.timestamps
     end
   end

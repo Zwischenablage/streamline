@@ -57,10 +57,8 @@ ActiveRecord::Schema.define(version: 2019_01_02_145755) do
     t.string "vehicle"
     t.integer "state"
     t.integer "project_id"
-    t.integer "param_set_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["param_set_id"], name: "index_sessions_on_param_set_id"
     t.index ["project_id"], name: "index_sessions_on_project_id"
   end
 
