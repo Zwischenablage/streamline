@@ -2,3 +2,35 @@
 2. Install Docker
 3. Install Elastic via Docker:
 docker run --name elasticsearch-rails-searchapp --publish 9200:9200 --env "discovery.type=single-node" --env "cluster.name=elasticsearch-rails" --env "cluster.routing.allocation.disk.threshold_enabled=false" --rm docker.elastic.co/elasticsearch/elasticsearch-oss:6.4.0
+4. Adding Bootstrap support: https://github.com/twbs/bootstrap-rubygem
+
+
+
+
+Streamline POC
+
+Listenbasiertes Handling
+Schwierigkeit: Oberfläche mit Datenbank verknüpfen
+Beispiel: SSE-Version, ich will suchen nach SSE 3.18 weil hier ein Bug war
+Problem: Verknüpfte/kombinierte Suchen: SSE 3.18 und Param Wind-Buffet-Supppresion = on
+
+Eintrage auf Basis:PIT / Portierungssheet
+Liste mir alle Projekte: OEM=Audi & SSE-version=3.18
+
+Ergebnis:liste mit projekten (siehe oracle projekt-liste)
+
+Start
+Phasen im Projektlifecycle
+Am ende: ACQUA Anbindung
+
+
+Add Bootstrap dependencies and Bootstrap to your application.js:
+
+//= require jquery3
+//= require popper
+//= require bootstrap-sprockets
+While bootstrap-sprockets provides individual Bootstrap components for ease of debugging, you may alternatively require the concatenated bootstrap for faster compilation:
+
+//= require jquery3
+//= require popper
+//= require bootstrap
