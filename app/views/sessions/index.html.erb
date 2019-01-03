@@ -5,6 +5,7 @@
 <table>
   <thead>
     <tr>
+      <th>Type</th>
       <th>Finished at</th>
       <th>Vehicle</th>
       <th>State</th>
@@ -15,6 +16,7 @@
   <tbody>
     <% @sessions.each do |session| %>
       <tr>
+        <td><%= session.type %></td>
         <td><%= session.finished_at %></td>
         <td><%= session.vehicle %></td>
         <td><%= session.state %></td>

@@ -1,2 +1,0 @@
-class SessionType < ApplicationRecord
-end

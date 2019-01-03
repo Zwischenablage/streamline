@@ -50,25 +50,16 @@ ActiveRecord::Schema.define(version: 2019_01_02_145755) do
     t.index ["customer_id"], name: "index_projects_on_customer_id"
   end
 
-  create_table "session_types", force: :cascade do |t|
-    t.string "type"
-    t.integer "session_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["session_id"], name: "index_session_types_on_session_id"
-  end
-
   create_table "sessions", force: :cascade do |t|
+    t.integer "session_type"
     t.string "description"
     t.datetime "finished_at"
     t.string "vehicle"
     t.integer "state"
     t.integer "project_id"
-    t.integer "session_type_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["project_id"], name: "index_sessions_on_project_id"
-    t.index ["session_type_id"], name: "index_sessions_on_session_type_id"
   end
 
   create_table "users", force: :cascade do |t|
