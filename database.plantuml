@@ -41,6 +41,7 @@ Table(session, "session") {
 primary_key(id) INTEGER
 primary_key(project_id) INTEGER
 primary_key(type_id) INTEGER
+description STRING
 finished_at DATETIME
 vehicle STRING
 done_by(user_Id) INTEGER

@@ -25,6 +25,7 @@
   <table class="table">
     <tr>
       <th>Session Type</th>
+      <th>Description</th>
       <th>Finished At</th>
       <th>Vehicle</th>
       <th>State</th>
@@ -33,6 +34,7 @@
 <% @project.sessions.each do |session| %>
   <tr>
     <td><%= "TYPE" %></td>
+    <td><%= session.description %></td>
     <td><%= session.finished_at %></td>
     <td><%= session.vehicle %></td>
     <td><%= session.state %></td>

@@ -14,7 +14,7 @@
       <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="<%= customers_path %>">Streamline</a></li>
         <li class="breadcrumb-item"><a href="<%= customer_path(@customer) %>"><%= @customer.name %></a></li>
-        <li class="breadcrumb-item active" aria-current="page"><%= @project.name %></li>
+        <% if @project.present? %><li class="breadcrumb-item active" aria-current="page"><%= @project.name %></li><% end %>
       </ol>
     </nav>
     <%= yield %>

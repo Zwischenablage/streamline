@@ -25,6 +25,8 @@ class SessionsController < ApplicationController
 
   # GET /sessions/1/edit
   def edit
+    @customer = Customer.find(params[:customer_id])
+    @project = Project.find(params[:project_id])
   end
 
   # POST /sessions
@@ -80,6 +82,6 @@ class SessionsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def session_params
-      params.require(:session).permit(:finished_at, :vehicle, :state)
+      params.require(:session).permit(:description, :finished_at, :vehicle, :state)
     end
 end
