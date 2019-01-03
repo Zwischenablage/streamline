@@ -26,7 +26,8 @@ class SessionsController < ApplicationController
   # GET /sessions/1/edit
   def edit
     @customer = Customer.find(params[:customer_id])
-    @project = Project.find(params[:project_id])
+    @project = @customer.projects.find(params[:project_id])
+    @session = @project.sessions.find(params[:id])
   end
 
   # POST /sessions
@@ -34,7 +35,7 @@ class SessionsController < ApplicationController
   def create
     puts "Session#CREATE"
     @customer = Customer.find(params[:customer_id])
-    @project = Project.find(params[:project_id])
+    @project = @customer.projects.find(params[:project_id])
     @session = @project.sessions.create(session_params)
 
     respond_to do |format|

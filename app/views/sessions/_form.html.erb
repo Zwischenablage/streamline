@@ -1,37 +1,7 @@
-<%= form_with(model: [@customer, @project, @project.sessions.build], local: true) do |form| %>
-  <% if session.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(session.errors.count, "error") %> prohibited this session from being saved:</h2>
-
-      <ul>
-      <% session.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div class="field">
-    <%= form.label :description %>
-    <%= form.text_field :description %>
-  </div>
-
-  <div class="field">
-    <%= form.label :finished_at %>
-    <%= form.datetime_select :finished_at %>
-  </div>
-
-  <div class="field">
-    <%= form.label :vehicle %>
-    <%= form.text_field :vehicle %>
-  </div>
-
-  <div class="field">
-    <%= form.label :state %>
-    <%= form.number_field :state %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit %>
-  </div>
+<%= simple_form_for [@customer, @project, @session] do |f| %>
+  <%= f.input :description %>
+  <%= f.input :finished_at %>
+  <%= f.input :vehicle %>
+  <%= f.input :state %>
+  <%= f.button :submit, class: "btn btn-primary btn-sm" %>
 <% end %>

@@ -70,3 +70,6 @@ gem 'elasticsearch-rails', git: 'https://github.com/elasticsearch/elasticsearch-
 #Bootstrap
 gem 'bootstrap', '~> 4.2.1'
 gem 'jquery-rails'
+gem 'simple_form'
+gem 'popper_js'
+gem 'tether-rails'

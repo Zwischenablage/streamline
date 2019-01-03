@@ -18,8 +18,9 @@ class ProjectsController < ApplicationController
 
   # GET /projects/new
   def new
-    puts "NEW@!!"
+    puts "Project@new"
     @customer = Customer.find(params[:customer_id])
+    #@project = @customer.projects.create(project_params)
     @project = Project.new
   end
 
@@ -51,9 +52,10 @@ class ProjectsController < ApplicationController
   # PATCH/PUT /projects/1
   # PATCH/PUT /projects/1.json
   def update
+    @customer = Customer.find(params[:customer_id])
     respond_to do |format|
       if @project.update(project_params)
-        format.html { redirect_to @project, notice: 'Project was successfully updated.' }
+        format.html { redirect_to customer_path(@customer), notice: 'Project was successfully updated.' }
         format.json { render :show, status: :ok, location: @project }
       else
         format.html { render :edit }
