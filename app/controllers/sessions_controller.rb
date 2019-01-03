@@ -21,6 +21,7 @@ class SessionsController < ApplicationController
     @customer = Customer.find(params[:customer_id])
     @project = Project.find(params[:project_id])
     @session = Session.new
+    @session.paramsets.build
   end
 
   # GET /sessions/1/edit
@@ -33,10 +34,17 @@ class SessionsController < ApplicationController
   # POST /sessions
   # POST /sessions.json
   def create
+
     puts "Session#CREATE"
     @customer = Customer.find(params[:customer_id])
     @project = @customer.projects.find(params[:project_id])
     @session = @project.sessions.create(session_params)
+
+    @paramset = ParamSet.create()
+    @paramset.errors.full_messages
+
+    puts params.to_yaml
+    #@paramset.save
 
     respond_to do |format|
       if @session.save

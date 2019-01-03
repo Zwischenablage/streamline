@@ -1,6 +1,6 @@
-class CreateValueSets < ActiveRecord::Migration[5.2]
+class CreateValuesets < ActiveRecord::Migration[5.2]
   def change
-    create_table :value_sets do |t|
+    create_table :valuesets do |t|
       t.string :name
       t.string :shortComment
       t.string :comment

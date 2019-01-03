@@ -1,7 +1,5 @@
 Rails.application.routes.draw do
-  resources :oems
   resources :session_types
-  resources :users
   resources :customers do
     resources :projects do
       resources :sessions

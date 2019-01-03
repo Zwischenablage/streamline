@@ -1,4 +1,4 @@
 class ValueSetMap < ApplicationRecord
-  has_one :value_set
-  has_one :param_set
+  belongs_to :value_set
+  belongs_to :param_set
 end

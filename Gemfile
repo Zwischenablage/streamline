@@ -73,3 +73,6 @@ gem 'jquery-rails'
 gem 'simple_form'
 gem 'popper_js'
 gem 'tether-rails'
+
+#dropzone
+gem 'dropzonejs-rails'
