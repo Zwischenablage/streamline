@@ -44,8 +44,8 @@ class SessionsController < ApplicationController
     @session = @project.sessions.create(session_params)
 
     puts "HUHU\n" + params[:paramsets].to_yaml
-    @paramset = @session.param_sets.create(param_set_params)
-    @paramset.save
+    #@paramset = @session.param_sets.create(param_set_params)
+    #@paramset.save
 
     respond_to do |format|
       if @session.save
@@ -61,9 +61,14 @@ class SessionsController < ApplicationController
   # PATCH/PUT /sessions/1
   # PATCH/PUT /sessions/1.json
   def update
+    puts "Session#Update"
+    @customer = Customer.find(params[:customer_id])
+    @project = @customer.projects.find(params[:project_id])
+    @session = @project.sessions.find(params[:id])
+
     respond_to do |format|
       if @session.update(session_params)
-        format.html { redirect_to @session, notice: 'Session was successfully updated.' }
+        format.html { redirect_to customer_project_path(@customer, @project), notice: 'Session was successfully updated.' }
         format.json { render :show, status: :ok, location: @session }
       else
         format.html { render :edit }
@@ -92,10 +97,7 @@ class SessionsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def session_params
-      params.require(:session).permit(:session_type, :description, :finished_at, :vehicle, :state)
+      params.require(:session).permit(:session_type, :description, :finished_at, :vehicle, :state, param_sets_attributes: [:productName, :productVersion, :mode, :id] )
     end
 
-    def param_set_params
-      params.require(:param_set).permit(:productName, :productVersion, :mode)
-    end
 end
