@@ -34,3 +34,16 @@ While bootstrap-sprockets provides individual Bootstrap components for ease of d
 //= require jquery3
 //= require popper
 //= require bootstrap
+
+
+rails console
+Rails.application.eager_load!
+ActiveRecord::Base.descendants # It returns all models and its attributes.
+ApplicationRecord.descendants.collect(&:name) # It returns only the model names
+Module.constants
+Symbol.all_symbols
+
+#You can use override $stdout to redirect the console output:
+$stdout = File.new('console.out', 'w')
+#You may also need to call this once:
+$stdout.sync = true

@@ -5,6 +5,7 @@ class CreateParamSets < ActiveRecord::Migration[5.2]
       t.string :productVersion
       t.string :mode
 
+      t.belongs_to :session, foreign_key:true
       t.timestamps
     end
   end

@@ -4,5 +4,10 @@
   <%= f.input :finished_at %>
   <%= f.input :vehicle %>
   <%= f.input :state %>
+  <%= f.simple_fields_for :param_sets do |ps| %>
+    <%= ps.input :productName %>
+    <%= ps.input :productVersion %>
+    <%= ps.input :mode %>
+  <% end %>
   <%= f.button :submit, class: "btn btn-primary btn-sm" %>
 <% end %>

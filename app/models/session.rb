@@ -1,5 +1,7 @@
 class Session < ApplicationRecord
-  belongs_to :project
   enum session_type: [:Porting, :APQM, :Tuning]
-  #has_many :param_sets, dependent: :destroy
+
+  belongs_to :project
+  has_many :param_sets
+  accepts_nested_attributes_for :param_sets
 end

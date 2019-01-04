@@ -21,6 +21,10 @@ class SessionsController < ApplicationController
     @customer = Customer.find(params[:customer_id])
     @project = Project.find(params[:project_id])
     @session = Session.new
+    @paramset = @session.param_sets.build
+    #@session.paramsets.build
+
+
   end
 
   # GET /sessions/1/edit
@@ -28,6 +32,7 @@ class SessionsController < ApplicationController
     @customer = Customer.find(params[:customer_id])
     @project = @customer.projects.find(params[:project_id])
     @session = @project.sessions.find(params[:id])
+    #@paramset = @session.param_sets.find(params[:id])
   end
 
   # POST /sessions
@@ -37,6 +42,10 @@ class SessionsController < ApplicationController
     @customer = Customer.find(params[:customer_id])
     @project = @customer.projects.find(params[:project_id])
     @session = @project.sessions.create(session_params)
+
+    puts "HUHU\n" + params[:paramsets].to_yaml
+    @paramset = @session.param_sets.create(param_set_params)
+    @paramset.save
 
     respond_to do |format|
       if @session.save
@@ -84,5 +93,9 @@ class SessionsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def session_params
       params.require(:session).permit(:session_type, :description, :finished_at, :vehicle, :state)
+    end
+
+    def param_set_params
+      params.require(:param_set).permit(:productName, :productVersion, :mode)
     end
 end

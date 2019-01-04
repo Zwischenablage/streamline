@@ -30,8 +30,10 @@ ActiveRecord::Schema.define(version: 2019_01_02_145755) do
     t.string "productName"
     t.string "productVersion"
     t.string "mode"
+    t.integer "session_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["session_id"], name: "index_param_sets_on_session_id"
   end
 
   create_table "products", force: :cascade do |t|
