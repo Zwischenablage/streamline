@@ -1,0 +1,35 @@
+<p id="notice"><%= notice %></p>
+<p>
+  Press <%= link_to 'here', search_param_sets_path %> to search.
+</p>
+<h1>Param Sets</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Productname</th>
+      <th>Productversion</th>
+      <th>Mode</th>
+      <th>Tuneproject</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @param_sets.each do |param_set| %>
+      <tr>
+        <td><%= param_set.productName %></td>
+        <td><%= param_set.productVersion %></td>
+        <td><%= param_set.mode %></td>
+        <td><%= param_set.tuneProject %></td>
+        <td><%= link_to 'Show', param_set %></td>
+        <td><%= link_to 'Edit', edit_param_set_path(param_set) %></td>
+        <td><%= link_to 'Destroy', param_set, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Param Set', new_param_set_path %>

@@ -1,0 +1,36 @@
+<h1>Elastic search for posts</h1>
+
+<%= form_for :search_param_sets, url: search_param_sets_path, method: :get do |form| %>
+  <%= form.text_field :query, value: params[:search_param_sets].presence && params[:search_param_sets][:query] %>
+  <%= form.submit 'Search' %>
+<% end %>
+
+
+<% unless @param_sets.nil? %>
+  <% if @param_sets.empty? %>
+    <h2>No posts found matching your query.</h2>
+  <% else %>
+    <h2>Search results</h2>
+
+    <table style="width: 100%;">
+      <thead>
+         <tr>
+           <th>Product</th>
+           <th>Version</th>
+           <th>Tune Project</th>
+         </tr>
+      </thead>
+
+      <tbody>
+        <% @param_sets.each do |ps| %>
+          <tr>
+            <td><%= ps.productName %></td>
+            <td><%= ps.productVersion %></td>
+            <td><%= ps.tuneProject %></td>
+            <td><%= link_to 'View', param_set.path(ps.id) %></td>
+          </tr>
+        <% end %>
+      <tbody>
+    </table>
+  <% end %>
+<% end %>

@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Productname:</strong>
+  <%= @param_set.productName %>
+</p>
+
+<p>
+  <strong>Productversion:</strong>
+  <%= @param_set.productVersion %>
+</p>
+
+<p>
+  <strong>Mode:</strong>
+  <%= @param_set.mode %>
+</p>
+
+<p>
+  <strong>Tuneproject:</strong>
+  <%= @param_set.tuneProject %>
+</p>
+
+<%= link_to 'Edit', edit_param_set_path(@param_set) %> |
+<%= link_to 'Back', param_sets_path %>

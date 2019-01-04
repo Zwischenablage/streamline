@@ -1,8 +1,13 @@
 Rails.application.routes.draw do
+  resources :param_sets
   resources :oems
   resources :session_types
   resources :users
-  resources :param_sets
+  resources :param_sets do
+    collection do
+      get :search
+    end
+  end
   resources :customers do
     resources :projects do
       resources :sessions

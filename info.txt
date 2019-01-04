@@ -3,7 +3,13 @@
 3. Install Elastic via Docker:
 docker run --name elasticsearch-rails-searchapp --publish 9200:9200 --env "discovery.type=single-node" --env "cluster.name=elasticsearch-rails" --env "cluster.routing.allocation.disk.threshold_enabled=false" --rm docker.elastic.co/elasticsearch/elasticsearch-oss:6.4.0
 4. Adding Bootstrap support: https://github.com/twbs/bootstrap-rubygem
+5. Elastic Search HowTo:https://iridakos.com/tutorials/2017/12/03/elasticsearch-and-rails-tutorial.html
 
+
+
+Commands
+## Recreate Elastic index
+ParamSet.__elasticsearch__.delete_index!
 
 
 
