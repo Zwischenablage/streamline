@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  resources :param_sets
   resources :oems
   resources :session_types
   resources :users
@@ -14,7 +13,7 @@ Rails.application.routes.draw do
     end
   end
 
-  get 'streamline/index'
+  #get 'streamline/index'
   root 'customers#index'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

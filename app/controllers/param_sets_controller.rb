@@ -4,40 +4,42 @@ class ParamSetsController < ApplicationController
   # GET /param_sets
   # GET /param_sets.json
   def index
-    puts "ParamSets#index"
+    puts "--> ParamSets#index"
     @param_sets = ParamSet.all
   end
 
   def search
-    puts "ParamSets#search"
+    puts "--> ParamSets#search"
+    puts "YAML: " + params.to_yaml
     query = params[:search_param_sets].presence && params[:search_param_sets][:query]
 
     if query
-      @posts = ParamSet.search_func(query)
+      puts "Calling SEARCH... "
+      @param_sets = ParamSet.search_func(query)
     end
   end
 
   # GET /param_sets/1
   # GET /param_sets/1.json
   def show
-    puts "ParamSets#show"
+    puts "--> ParamSets#show"
   end
 
   # GET /param_sets/new
   def new
-    puts "ParamSets#new"
+    puts "--> ParamSets#new"
     @param_set = ParamSet.new
   end
 
   # GET /param_sets/1/edit
   def edit
-    puts "ParamSets#edit"
+    puts "--> ParamSets#edit"
   end
 
   # POST /param_sets
   # POST /param_sets.json
   def create
-    puts "ParamSets#create"
+    puts "--> ParamSets#create"
     @param_set = ParamSet.new(param_set_params)
 
     respond_to do |format|

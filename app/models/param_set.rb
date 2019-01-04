@@ -11,6 +11,8 @@ class ParamSet < ApplicationRecord
  end
 
  def self.search_func(query)
+   puts "serch_func!!"
+   puts "YAML query" + query.to_yaml
   self.search({
     query: {
       bool: {
