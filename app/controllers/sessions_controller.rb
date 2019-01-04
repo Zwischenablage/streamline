@@ -43,6 +43,8 @@ class SessionsController < ApplicationController
     @project = @customer.projects.find(params[:project_id])
     @session = @project.sessions.create(session_params)
 
+    @session.param_sets[0].tuneProject = "hallo"
+
     puts "HUHU\n" + params[:paramsets].to_yaml
     #@paramset = @session.param_sets.create(param_set_params)
     #@paramset.save
@@ -97,7 +99,7 @@ class SessionsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def session_params
-      params.require(:session).permit(:session_type, :description, :finished_at, :vehicle, :state, param_sets_attributes: [:productName, :productVersion, :mode, :id] )
+      params.require(:session).permit(:session_type, :description, :finished_at, :vehicle, :state, :tuneProject, param_sets_attributes: [:productName, :productVersion, :mode, :id] )
     end
 
 end

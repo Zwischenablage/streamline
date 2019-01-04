@@ -13,7 +13,7 @@
     <nav aria-label="breadcrumb">
       <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="<%= customers_path %>">Streamline</a></li>
-        <% if @customer.present? %>
+        <% if @customer.present? && @customer.name.present? %>
         <li class="breadcrumb-item active" aria-current="page"><%= @customer.name %></li>
         <% end %>
       </ol>

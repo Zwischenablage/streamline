@@ -30,6 +30,7 @@ ActiveRecord::Schema.define(version: 2019_01_02_145755) do
     t.string "productName"
     t.string "productVersion"
     t.string "mode"
+    t.text "tuneProject"
     t.integer "session_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -55,7 +56,7 @@ ActiveRecord::Schema.define(version: 2019_01_02_145755) do
   create_table "sessions", force: :cascade do |t|
     t.integer "session_type"
     t.string "description"
-    t.datetime "finished_at"
+    t.date "finished_at"
     t.string "vehicle"
     t.integer "state"
     t.integer "project_id"

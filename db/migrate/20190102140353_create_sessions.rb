@@ -3,7 +3,7 @@ class CreateSessions < ActiveRecord::Migration[5.2]
     create_table :sessions do |t|
       t.integer :session_type
       t.string :description
-      t.datetime :finished_at
+      t.date :finished_at
       t.string :vehicle
       t.integer :state
 

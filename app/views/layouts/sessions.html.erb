@@ -15,7 +15,7 @@
         <li class="breadcrumb-item"><a href="<%= customers_path %>">Streamline</a></li>
         <li class="breadcrumb-item"><a href="<%= customer_path(@customer) %>"><%= @customer.name %></a></li>
         <li class="breadcrumb-item"><a href="<%= customer_project_path(@customer,@project) %>"><%= @project.name %></a></li>
-        <li class="breadcrumb-item active" aria-current="page"><%= @session.session_type %></li>
+        <% if @session.present? && @session.session_type.present? %><li class="breadcrumb-item active" aria-current="page"><%= @session.session_type + " - " + @session.description %></li><% end %>
       </ol>
     </nav>
     <%= yield %>
