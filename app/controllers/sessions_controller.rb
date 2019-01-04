@@ -43,7 +43,9 @@ class SessionsController < ApplicationController
     @project = @customer.projects.find(params[:project_id])
     @session = @project.sessions.create(session_params)
 
-    @session.param_sets[0].tuneProject = "hallo"
+
+    #doc = Nokogiri::XML.parse(File.open("test.tproj")
+    @session.param_sets[0].tuneProject = File.read("test.tproj")
 
     puts "HUHU\n" + params[:paramsets].to_yaml
     #@paramset = @session.param_sets.create(param_set_params)
