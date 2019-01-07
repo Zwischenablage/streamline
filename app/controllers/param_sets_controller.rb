@@ -5,7 +5,17 @@ class ParamSetsController < ApplicationController
   # GET /param_sets.json
   def index
     puts "--> ParamSets#index"
-    @param_sets = ParamSet.all
+    #@param_sets = ParamSet.all
+
+    puts "YAML::: " + params.to_yaml
+    if params[:search_param_sets].present?
+      puts "Received Query: " + params[:search_param_sets][:query]
+      #@current_page = (search_params[:page] || 1).to_i
+      #@total_pages = (RubyGem.count / PAGE_SIZE.to_f).ceil
+      #page_offset = (@current_page - 1) * PAGE_SIZE
+      #@search_results = RubyGem.order(:created_at).limit(PAGE_SIZE).offset(page_offset)
+      search()
+    end
   end
 
   def search
@@ -85,6 +95,6 @@ class ParamSetsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def param_set_params
-      params.require(:param_set).permit(:productName, :productVersion, :mode, :tuneProject)
+      params.require(:param_set).permit(:query, :productName, :productVersion, :mode, :tuneProject)
     end
 end

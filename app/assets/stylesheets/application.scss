@@ -1,3 +1,12 @@
+ img{
+  margin-left: 4px;
+  width: 80px;
+  margin: 0;
+  align-self: stretch;
+
+}
+
+
 // Custom bootstrap variables must be set or imported *before* bootstrap.
 @import "bootstrap";
 
@@ -19,10 +28,8 @@ $offset: 175px;
 $appSearchGradient: linear-gradient(left, #5b9ed5, #3a6fbf);
 $wavesImage: "../images/bg--waves-crop.jpg";
 
-.streamline-icon {
-  margin-left: 4px;
-  width: 80px;
-}
+
+
 
 // Base
 html {
@@ -74,7 +81,7 @@ a.subtle-link {
   }
 }
 
-.app-container {
+.container {
   background: $backgroundColor;
   font-family: "Roboto", sans-serif;
 }
@@ -93,7 +100,7 @@ a.subtle-link {
   pointer-events: none;
 }
 
-.search-demo {
+.streamline-search {
   width: 100%;
   display: flex;
   flex-direction: column;;

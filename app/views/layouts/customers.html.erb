@@ -10,15 +10,17 @@
   </head>
 
   <body>
-    <nav aria-label="breadcrumb">
-      <ol class="breadcrumb">
-        <li class ="breadcrumb-item"><%= image_tag('icons/streamline.svg', class: 'streamline-icon', alt: 'Streamline Icon') %></li>
-        <li class="breadcrumb-item"><a href="<%= customers_path %>">Streamline</a></li>
-        <% if @customer.present? && @customer.name.present? %>
-        <li class="breadcrumb-item active" aria-current="page"><%= @customer.name %></li>
-        <% end %>
-      </ol>
-    </nav>
+    <main role="main" class="container">
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li class ="breadcrumb-item"><%= image_tag('icons/streamline.svg', class: 'streamline-icon', alt: 'Streamline Icon') %></li>
+          <li class="breadcrumb-item"><a href="<%= customers_path %>">Streamline</a></li>
+          <% if @customer.present? && @customer.name.present? %>
+          <li class="breadcrumb-item active" aria-current="page"><%= @customer.name %></li>
+          <% end %>
+        </ol>
+      </nav>
     <%= yield %>
+  </main>
   </body>
 </html>

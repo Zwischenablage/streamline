@@ -24,7 +24,13 @@ class ParamSet < ApplicationRecord
           }
         }]
       }
-    }
+    },
+    highlight: {
+      tags_schema: "styled",
+      fields: {
+        tuneProject: {fragment_size: 30, number_of_fragments: 1}
+      }
+  }
   })
 end
 

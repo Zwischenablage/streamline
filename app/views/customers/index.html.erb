@@ -26,12 +26,13 @@
 
 <%= link_to 'New Customer', new_customer_path %>
 
-<%= form_tag({}, {method: :get, class: 'search-demo__input-wrapper'}) do %>
-  <%= text_field_tag(:q, params[:q], class: "search-demo__text-input", placeholder: "Search for Ruby gems...") %>
-  <div class="form-check">
-    <%= check_box_tag('popular', 1, params[:popular], class: 'form-check-input') %>
-    <label class="form-check-label" for="popular">Only Popular</label>
-  </div>
-  <%= submit_tag("Search", class: "button search-demo__submit") %>
+<%= form_tag({}, {method: :get, class: 'streamline-search__input-wrapper'}) do %>
+  <%= text_field_tag(:q, params[:q], class: "streamline-search__text-input", placeholder: "Search within projects...") %>
+<%= submit_tag("Search", class: "button streamline-search__submit") %>
+
+<%= form_for :search_param_sets, url: search_param_sets_path, method: :get do |form| %>
+  <%= form.text_field :query, value: params[:search_param_sets].presence && params[:search_param_sets][:query] %>
+  <%= form.submit 'Search' %>
+<% end %>
 
 <% end %>

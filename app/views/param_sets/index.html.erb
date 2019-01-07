@@ -1,34 +1,58 @@
 <p id="notice"><%= notice %></p>
-<p>
-  Press <%= link_to 'here', search_param_sets_path %> to search.
-</p>
-<h1>Param Sets</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th>Productname</th>
-      <th>Productversion</th>
-      <th>Mode</th>
-      <th>Tuneproject</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+<div class="streamline-search <%= 'active-search' if @param_sets&.any? %> -live-filtering">
+  <div class="streamline-search__content">
 
-  <tbody>
-    <% @param_sets.each do |param_set| %>
-      <tr>
-        <td><%= param_set.productName %></td>
-        <td><%= param_set.productVersion %></td>
-        <td><%= param_set.mode %></td>
-        <td><%= param_set.tuneProject %></td>
-        <td><%= link_to 'Show', param_set %></td>
-        <td><%= link_to 'Edit', edit_param_set_path(param_set) %></td>
-        <td><%= link_to 'Destroy', param_set, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+    <div class="streamline-search__header">
+      <%= form_for :search_param_sets, url: param_sets_path, html: {class: "streamline-search__input-wrapper"},method: :get do |form| %>
+        <%= form.text_field :query, placeholder: "hier", class: "streamline-search__text-input", value: params[:search_param_sets].presence && params[:search_param_sets][:query] %>
+        <%= form.submit 'Search', :class => "button v__submit" %>
+      <% end %>
+    </div>
+    <div class="streamline-search__header">
+      <%= form_for :search_param_sets, url: search_param_sets_path, html: {class: "streamline-search__input-wrapper"},method: :get do |form| %>
+        <%= form.text_field :query, placeholder: "Search in projects", class: "streamline-search__text-input", value: params[:search_param_sets].presence && params[:search_param_sets][:query] %>
+        <%= form.submit 'Search', :class => "button v__submit" %>
+      <% end %>
+    </div>
+
+
+    <%# Results %>
+    <div class="streamline-search__body">
+      <% if @param_sets&.any? %>
+        <div class="search-results">
+
+        <div class="results">
+          <div class="results__header">
+          </div>
+
+          <div class="results__body">
+            <ul>
+              <% @param_sets.each do |result| %>
+                <li class="result">
+                  <div class="result__header">
+                    <div class="result__title"> <%= link_to "Title", param_sets_path %> </div>
+
+                  </div>
+                  <div class="result__body">
+                    <p class="result__description"><%= result.try(:highlight).try(:tuneProject) ? result.highlight.tuneProject[0].html_safe : result.tunePrject.html_safe %></p>
+                    <div class="result__details">
+                      <p><strong>Product: </strong><%= result.productName %></p>
+                      <p><strong>Mode: </strong><%= result.mode %></p>
+                    </div>
+                  </div>
+                </li>
+              <% end %>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <% end %>
+    </div>
+
+
+  </div>
+</div>
 
 <br>
 

@@ -10,6 +10,13 @@
   </head>
 
   <body>
+    <main role="main" class="container">
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li class ="breadcrumb-item"><%= image_tag('icons/streamline.svg', class: 'streamline-icon', alt: 'Streamline Icon') %></li>
+        </ol>
+      </nav>
     <%= yield %>
+  </main>
   </body>
 </html>
