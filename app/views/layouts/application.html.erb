@@ -11,11 +11,13 @@
 
   <body>
     <main role="main" class="container">
-      <nav aria-label="breadcrumb">
+      <nav aria-label="breadcrumb" class="breadcrumb d-flex justify-content-between">
         <ol class="breadcrumb">
           <li class ="breadcrumb-item"><%= link_to image_tag('icons/streamline.svg', class: 'streamline-icon', alt: 'Streamline Icon'), customers_path %></li>
         </ol>
+        <%= link_to 'Search', param_sets_path, class: "btn btn-dark btn-sm" %>
       </nav>
+
     <%= yield %>
   </main>
   </body>

@@ -29,7 +29,32 @@ $appSearchGradient: linear-gradient(left, #5b9ed5, #3a6fbf);
 $wavesImage: "../images/bg--waves-crop.jpg";
 
 
+#nav-line {
+  display:flex;
+  button {
+    position:absolute;
+    right:25rem;
+    top:1rem;
+    transform:translateY(-50%);
+  }
+}
+//.breadcrumb > *:last-child.pull-right::before { display: none; }
+.breadcrumb ol
+{
+  margin-top:10px;
+  margin-bottom:10px;
+}
 
+.breadcrumb
+{
+  padding-top: 0;
+  padding-bottom: 0;
+
+  .btn-sm
+  {
+    padding:10px 39px;
+  }
+}
 
 // Base
 html {
@@ -126,7 +151,7 @@ a.subtle-link {
     width: 100%;
     margin: 0 auto;
     text-align: center;
-    padding: 15vw 0 1rem 0;
+    padding: 1vw 0 1rem 0;
     position: relative;
     transition-property: padding, height;
     transition: 0.5s $easeInOutCubic;

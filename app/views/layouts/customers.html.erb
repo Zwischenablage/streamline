@@ -7,18 +7,20 @@
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+
   </head>
 
   <body>
     <main role="main" class="container">
-      <nav aria-label="breadcrumb">
-        <ol class="breadcrumb">
-          <li class ="breadcrumb-item"><%= link_to image_tag('icons/streamline.svg', class: 'streamline-icon', alt: 'Streamline Icon'), customers_path %></li>
-          <li class="breadcrumb-item"><a href="<%= customers_path %>">Streamline</a></li>
-          <% if @customer.present? && @customer.name.present? %>
-          <li class="breadcrumb-item active" aria-current="page"><%= @customer.name %></li>
-          <% end %>
-        </ol>
+      <nav aria-label="breadcrumb" class="breadcrumb d-flex justify-content-between">
+          <ol class="breadcrumb">
+            <li class ="breadcrumb-item"><%= link_to image_tag('icons/streamline.svg', class: 'streamline-icon', alt: 'Streamline Icon'), customers_path %></li>
+            <li class="breadcrumb-item"><a href="<%= customers_path %>">Streamline</a></li>
+            <% if @customer.present? && @customer.name.present? %>
+            <li class="breadcrumb-item active" aria-current="page"><%= @customer.name %></li>
+            <% end %>
+          </ol>
+          <%= link_to 'Search', param_sets_path, class: "btn btn-dark btn-sm" %>
       </nav>
     <%= yield %>
   </main>

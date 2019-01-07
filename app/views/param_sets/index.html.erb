@@ -5,12 +5,6 @@
 
     <div class="streamline-search__header">
       <%= form_for :search_param_sets, url: param_sets_path, html: {class: "streamline-search__input-wrapper"},method: :get do |form| %>
-        <%= form.text_field :query, placeholder: "hier", class: "streamline-search__text-input", value: params[:search_param_sets].presence && params[:search_param_sets][:query] %>
-        <%= form.submit 'Search', :class => "button v__submit" %>
-      <% end %>
-    </div>
-    <div class="streamline-search__header">
-      <%= form_for :search_param_sets, url: search_param_sets_path, html: {class: "streamline-search__input-wrapper"},method: :get do |form| %>
         <%= form.text_field :query, placeholder: "Search in projects", class: "streamline-search__text-input", value: params[:search_param_sets].presence && params[:search_param_sets][:query] %>
         <%= form.submit 'Search', :class => "button v__submit" %>
       <% end %>

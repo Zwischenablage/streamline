@@ -11,7 +11,7 @@
 
   <body>
     <main role="main" class="container">
-      <nav aria-label="breadcrumb">
+      <nav aria-label="breadcrumb" class="breadcrumb d-flex justify-content-between">
         <ol class="breadcrumb">
           <li class ="breadcrumb-item"><%= link_to image_tag('icons/streamline.svg', class: 'streamline-icon', alt: 'Streamline Icon'), customers_path %></li>
           <li class="breadcrumb-item"><a href="<%= customers_path %>">Streamline</a></li>
@@ -19,6 +19,7 @@
           <li class="breadcrumb-item"><a href="<%= customer_project_path(@customer,@project) %>"><%= @project.name %></a></li>
           <% if @session.present? && @session.session_type.present? %><li class="breadcrumb-item active" aria-current="page"><%= @session.session_type + " - " + @session.description %></li><% end %>
         </ol>
+        <%= link_to 'Search', param_sets_path, class: "btn btn-dark btn-sm" %>
       </nav>
       <%= yield %>
     </main>
