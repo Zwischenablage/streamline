@@ -3,11 +3,6 @@
 <h5 id="overflow-auto-and-scroll"><%= @customer.name %> <code><%= @project.name %></code> - OracleID: <code><%= @project.oracleID %></code></h5>
 
 <br><br>
-<%= form_tag customer_projects_path, method: 'get' do %>
-  <%= label_tag :query %>
-  <%= text_field_tag :q, params[:q] %>
-  <%= submit_tag :search %>
-<% end %>
 <%= link_to 'Add Session', new_customer_project_session_path(@customer, @project) %>
 <%= link_to 'Edit', edit_customer_project_path(@project) %> |
 <%= link_to 'Back', customer_projects_path %>

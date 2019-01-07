@@ -25,14 +25,3 @@
 <br>
 
 <%= link_to 'New Customer', new_customer_path %>
-
-<%= form_tag({}, {method: :get, class: 'streamline-search__input-wrapper'}) do %>
-  <%= text_field_tag(:q, params[:q], class: "streamline-search__text-input", placeholder: "Search within projects...") %>
-<%= submit_tag("Search", class: "button streamline-search__submit") %>
-
-<%= form_for :search_param_sets, url: search_param_sets_path, method: :get do |form| %>
-  <%= form.text_field :query, value: params[:search_param_sets].presence && params[:search_param_sets][:query] %>
-  <%= form.submit 'Search' %>
-<% end %>
-
-<% end %>
