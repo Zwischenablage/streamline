@@ -5,7 +5,7 @@ class ProjectsController < ApplicationController
   # GET /projects.json
   def index
     @customer = Customer.find(params[:customer_id])
-    @projects = Project.all
+    @projects = @customer.projects
 
   end
 
