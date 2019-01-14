@@ -68,6 +68,7 @@ ActiveRecord::Schema.define(version: 2019_01_14_160243) do
     t.date "finished_at"
     t.string "vehicle"
     t.integer "state"
+    t.string "project_file"
     t.integer "project_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

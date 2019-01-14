@@ -6,6 +6,7 @@ class CreateSessions < ActiveRecord::Migration[5.2]
       t.date :finished_at
       t.string :vehicle
       t.integer :state
+      t.string :project_file
 
       t.belongs_to :project, foreign_key: true, index: true
       t.timestamps

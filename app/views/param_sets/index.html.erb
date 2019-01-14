@@ -29,13 +29,20 @@
                     <div class="result__title"> <%= link_to result.projectName, param_sets_path %> </div>
                   </div>
                   <div class="result__body">
-                    <p class="result__description"><strong> Query:</strong><%= @query %></p>
-                    <%= result.value_sets.where(name: @query).take.value %>
+                    <p class="result__description"><strong> Query:</strong><%= @query %></p><br>
                     <div class="result__details">
                       <p><strong>Product: </strong><%= result.productName %></p>
                       <p><strong>Version: </strong><%= result.productVersion %></p>
                       <p><strong>Mode: </strong><%= result.mode %></p>
-                    </div>
+                      <p><strong>Param Sets: </strong><%= result.value_sets.count %>
+                    </div><br>
+
+                    <% result.value_sets.each do |vs| %>
+                      <%= vs.name + " - " + @query + " = " + ( (vs.parameters.where(name: @query).present? && vs.parameters.where(name: @query).take.value) || "") %>
+                    <br>
+                    <% end %>
+
+
                   </div>
                 </li>
               <% end %>

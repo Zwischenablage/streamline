@@ -1,5 +1,6 @@
 class SessionsController < ApplicationController
-  before_action :set_session, only: [:show, :edit, :update, :destroy]
+  helper SessionsHelper
+  before_action :set_session, only: [:show, :edit, :update, :destroy, :project_files]
 
   # GET /sessions
   # GET /sessions.json
@@ -43,6 +44,7 @@ class SessionsController < ApplicationController
     @customer = Customer.find(params[:customer_id])
     @project = @customer.projects.find(params[:project_id])
     @session = @project.sessions.create(session_params)
+    @session.param_sets.create
 
 
     #doc = Nokogiri::XML.parse(File.open("test.tproj")
@@ -107,12 +109,14 @@ class SessionsController < ApplicationController
     end
 
     def parseTuneProject
-      doc = Nokogiri::XML(File.open("test.tproj"))
+      filename = "./tproj/" + params[:session]["project_file"]
+      puts "FFFF filename = " + filename
+      doc = Nokogiri::XML(File.open(filename))
 
-      @session.param_sets[0].projectName =  doc.xpath("tuneproject/name").text
-      @session.param_sets[0].productVersion =  doc.xpath("//library/libversion").text
-      @session.param_sets[0].productName =  doc.xpath("//library/libname").text
-      @session.param_sets[0].mode =  doc.xpath("//library/libmode").text
+      @session.param_sets[0].projectName = doc.xpath("tuneproject/name").text
+      @session.param_sets[0].productVersion = doc.xpath("//library/libversion").text
+      @session.param_sets[0].productName = doc.xpath("//library/libname").text
+      @session.param_sets[0].mode = doc.xpath("//library/libmode").text
       #@session.param_sets[0].tuneProject =  doc.xpath("//valueset")
 
       doc.xpath("//paramset/valueset").each do |valueSet|
