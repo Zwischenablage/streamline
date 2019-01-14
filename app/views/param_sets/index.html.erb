@@ -30,7 +30,7 @@
 
                   </div>
                   <div class="result__body">
-                    <p class="result__description"><%= result.try(:highlight).try(:tuneProject) ? result.highlight.tuneProject[0].html_safe : result.tunePrject.html_safe %></p>
+                    <p class="result__description"><%= result.tuneProject %></p>
                     <div class="result__details">
                       <p><strong>Product: </strong><%= result.productName %></p>
                       <p><strong>Mode: </strong><%= result.mode %></p>

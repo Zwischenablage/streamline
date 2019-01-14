@@ -25,7 +25,7 @@ class ParamSetsController < ApplicationController
 
     if query
       puts "Calling SEARCH... "
-      @param_sets = ParamSet.search_func(query)
+      @param_sets = ParamSet.search query, highlight: true
     end
   end
 
