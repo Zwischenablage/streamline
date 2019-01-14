@@ -1,0 +1,18 @@
+<table class="table">
+  <tr>
+    <th>Type</th>
+    <th>Description</th>
+    <th>Finished At</th>
+    <th>Vehicle</th>
+    <th>State</th>
+  </tr>
+  <% @project.sessions.where(session_type: session_type).each do |session| %>
+  <tr>
+      <td><%= session.session_type %></td>
+      <td><%= session.description %></td>
+      <td><%= session.finished_at %></td>
+      <td><%= session.vehicle %></td>
+      <td><%= session.state %></td>
+    </tr>
+  <% end %>
+  </table>

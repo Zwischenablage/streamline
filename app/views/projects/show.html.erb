@@ -6,7 +6,7 @@
 <%= link_to 'Add Session', new_customer_project_session_path(@customer, @project) %>
 <%= link_to 'Edit', edit_customer_project_path(@project) %> |
 <%= link_to 'Back', customer_projects_path %>
-
+<br>
 <% if @project.sessions.size > 0 %>
   <h2>Sessions</h2>
   <table class="table">
@@ -34,4 +34,36 @@
 <% end %>
 <% if @project.sessions.size > 0 %>
 </table>
+<% end %>
+<% if @project.sessions.size > 0 %>
+<nav>
+  <div class="nav nav-tabs" id="nav-tab" role="tablist">
+  <% if @project.sessions.where(session_type: :Porting).present? %>
+    <a class="nav-item nav-link active" id="nav-porting-tab" data-toggle="tab" href="#nav-porting" role="tab" aria-controls="nav-porting" aria-selected="true">Porting</a>
+  <% end %>
+  <% if @project.sessions.where(session_type: :APQM).present? %>
+    <a class="nav-item nav-link" id="nav-apqm-tab" data-toggle="tab" href="#nav-apqm" role="tab" aria-controls="nav-apqm" aria-selected="false">APQM</a>
+  <% end %>
+  <% if @project.sessions.where(session_type: :Tuning).present? %>
+  <a class="nav-item nav-link" id="nav-tuning-tab" data-toggle="tab" href="#nav-tuning" role="tab" aria-controls="nav-tuning" aria-selected="false">Tuning</a>
+  <% end %>
+  </div>
+</nav>
+<div class="tab-content" id="nav-tabContent">
+  <% if @project.sessions.where(session_type: :Porting).present? %>
+    <div class="tab-pane fade show active" id="nav-porting" role="tabpanel" aria-labelledby="nav-porting-tab">
+      <%= render :template => "projects/_session_table", locals: {session_type: :Porting} %>
+    </div>
+  <% end %>
+  <% if @project.sessions.where(session_type: :APQM).present? %>
+    <div class="tab-pane fade" id="nav-apqm" role="tabpanel" aria-labelledby="nav-apqm-tab">
+      <%= render :template => "projects/_session_table", locals: {session_type: :APQM} %>
+    </div>
+  <% end %>
+  <% if @project.sessions.where(session_type: :Tuning).present? %>
+    <div class="tab-pane fade" id="nav-tuning" role="tabpanel" aria-labelledby="nav-tuning-tab">
+      <%= render :template => "projects/_session_table", locals: {session_type: :Tuning} %>
+    </div>
+  <% end %>
+</div>
 <% end %>
