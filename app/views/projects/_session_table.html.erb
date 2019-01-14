@@ -1,18 +1,30 @@
-<table class="table">
-  <tr>
-    <th>Type</th>
-    <th>Description</th>
-    <th>Finished At</th>
-    <th>Vehicle</th>
-    <th>State</th>
-  </tr>
-  <% @project.sessions.where(session_type: session_type).each do |session| %>
-  <tr>
-      <td><%= session.session_type %></td>
-      <td><%= session.description %></td>
-      <td><%= session.finished_at %></td>
-      <td><%= session.vehicle %></td>
-      <td><%= session.state %></td>
-    </tr>
-  <% end %>
-  </table>
+<% if @project.sessions.where(session_type: session_type).present? %>
+  <div class="tab-pane fade <%= active %>" id="nav-<%= id_tag %>" role="tabpanel" aria-labelledby="nav-<%= id_tag %>-tab">
+    <table class="table">
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+        <th>Finished At</th>
+        <th>Vehicle</th>
+        <th>State</th>
+        <th>Show</th>
+        <th>Edit</th>
+        <th>Delete</th>
+      </tr>
+      <% @project.sessions.where(session_type: session_type).each do |session| %>
+      <tr>
+          <td><%= session.session_type %></td>
+          <td><%= session.description %></td>
+          <td><%= session.finished_at %></td>
+          <td><%= session.vehicle %></td>
+          <td><%= session.state %></td>
+          <td><%= link_to 'Show', customer_project_session_path(@customer, @project, session) %></td>
+          <td><%= link_to 'Edit', edit_customer_project_session_path(@customer,@project, session) %></td>
+          <td><%= link_to 'Delete', customer_project_session_path(@customer, @project, session),
+                  method: :delete,
+                  data: { confirm: 'Are you sure?' } %></td>
+        </tr>
+      <% end %>
+    </table>
+  </div>
+<% end %>
