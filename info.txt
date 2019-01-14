@@ -53,3 +53,11 @@ Symbol.all_symbols
 $stdout = File.new('console.out', 'w')
 #You may also need to call this once:
 $stdout.sync = true
+
+
+
+
+Todo:
+SQL: Snapshots
+Binaer-Daten: speichern, z.b. PDFs ?
+Versionierung von Parametern

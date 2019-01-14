@@ -4,6 +4,7 @@ class ParamSet < ApplicationRecord
 
   settings do
    mappings dynamic: false do
+     indexes :projectName, type: :text
      indexes :productName, type: :text
      indexes :productVersion, type: :text
      indexes :tuneProject, type: :text, analyzer: :english
@@ -20,7 +21,7 @@ class ParamSet < ApplicationRecord
         {
           multi_match: {
             query: query,
-            fields: [:productName, :productVersion, :tuneProject]
+            fields: [:projectName, :productName, :productVersion, :tuneProject]
           }
         }]
       }
@@ -37,3 +38,4 @@ end
   belongs_to :session
   #has_many :valuesetmaps, dependent: :destroy
 end
+ParamSet.import # for auto sync model with elastic search

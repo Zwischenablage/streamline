@@ -32,3 +32,5 @@
 
 *.tproj
 *.DS_Store
+tune.json
+console.out

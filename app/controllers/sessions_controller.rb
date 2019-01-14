@@ -45,7 +45,7 @@ class SessionsController < ApplicationController
 
 
     #doc = Nokogiri::XML.parse(File.open("test.tproj")
-    @session.param_sets[0].tuneProject = File.read("test.tproj")
+    parseTuneProject
 
     puts "HUHU\n" + params[:paramsets].to_yaml
     #@paramset = @session.param_sets.create(param_set_params)
@@ -103,5 +103,20 @@ class SessionsController < ApplicationController
     def session_params
       params.require(:session).permit(:session_type, :description, :finished_at, :vehicle, :state, :tuneProject, param_sets_attributes: [:productName, :productVersion, :mode, :id] )
     end
+
+    def parseTuneProject
+      doc = Nokogiri::XML(File.open("test.tproj"))
+
+      @session.param_sets[0].projectName =  doc.xpath("tuneproject/name").text
+      @session.param_sets[0].productVersion =  doc.xpath("//library/libversion").text
+      @session.param_sets[0].productName =  doc.xpath("//library/libname").text
+      @session.param_sets[0].mode =  doc.xpath("//library/libmode").text
+      @session.param_sets[0].tuneProject =  doc.xpath("//valueset")
+
+      #puts " !!!! Count : "  + block.count.to_s
+      #puts "ParamSet[0]: " + @session.param_sets[0].to_yaml
+
+    end
+
 
 end

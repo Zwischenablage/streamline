@@ -27,6 +27,7 @@ ActiveRecord::Schema.define(version: 2019_01_02_145755) do
   end
 
   create_table "param_sets", force: :cascade do |t|
+    t.string "projectName"
     t.string "productName"
     t.string "productVersion"
     t.string "mode"

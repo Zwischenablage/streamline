@@ -95,6 +95,6 @@ class ParamSetsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def param_set_params
-      params.require(:param_set).permit(:query, :productName, :productVersion, :mode, :tuneProject)
+      params.require(:param_set).permit(:query, :projectName, :productName, :productVersion, :mode, :tuneProject)
     end
 end

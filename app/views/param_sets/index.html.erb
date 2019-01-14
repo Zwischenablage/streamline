@@ -23,9 +23,10 @@
           <div class="results__body">
             <ul>
               <% @param_sets.each do |result| %>
+              <% result.to_yaml %>
                 <li class="result">
                   <div class="result__header">
-                    <div class="result__title"> <%= link_to "Title", param_sets_path %> </div>
+                    <div class="result__title"> <%= link_to result.projectName, param_sets_path %> </div>
 
                   </div>
                   <div class="result__body">
