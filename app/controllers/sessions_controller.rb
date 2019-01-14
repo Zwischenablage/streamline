@@ -22,6 +22,7 @@ class SessionsController < ApplicationController
     @project = Project.find(params[:project_id])
     @session = Session.new
     @paramset = @session.param_sets.build
+    @paramset.value_sets.build
     #@session.paramsets.build
 
 
@@ -47,7 +48,8 @@ class SessionsController < ApplicationController
     #doc = Nokogiri::XML.parse(File.open("test.tproj")
     parseTuneProject
 
-    puts "HUHU\n" + params[:paramsets].to_yaml
+    #puts "HUHU\n" + params[:paramsets].to_yaml
+    #puts "!!!session\n" + @ssesion.to_yaml
     #@paramset = @session.param_sets.create(param_set_params)
     #@paramset.save
 
@@ -111,7 +113,19 @@ class SessionsController < ApplicationController
       @session.param_sets[0].productVersion =  doc.xpath("//library/libversion").text
       @session.param_sets[0].productName =  doc.xpath("//library/libname").text
       @session.param_sets[0].mode =  doc.xpath("//library/libmode").text
-      @session.param_sets[0].tuneProject =  doc.xpath("//valueset")
+      #@session.param_sets[0].tuneProject =  doc.xpath("//valueset")
+
+      doc.xpath("//valueset/value").each do |value|
+        #puts "Name: " + value["name"] + ", = " + value.xpath("field")[0].text
+        vs = @session.param_sets[0].value_sets.build
+        vs.name = value["name"]
+        vs.value = value.xpath("field")[0].text
+        vs.comment = value.xpath("comment")[0].present? ? value.xpath("comment")[0].text : ""
+        vs.shortComment = ""
+      end
+
+
+      puts "!!!session\n" + @ssesion.to_yaml
 
       #puts " !!!! Count : "  + block.count.to_s
       #puts "ParamSet[0]: " + @session.param_sets[0].to_yaml
