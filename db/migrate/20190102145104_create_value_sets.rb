@@ -4,7 +4,6 @@ class CreateValueSets < ActiveRecord::Migration[5.2]
       t.string :name
       t.string :shortComment
       t.string :comment
-      t.string :value
 
       t.belongs_to :param_set, foreign_key:true
       t.timestamps

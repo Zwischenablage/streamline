@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_01_02_145755) do
+ActiveRecord::Schema.define(version: 2019_01_14_160243) do
 
   create_table "customers", force: :cascade do |t|
     t.string "name"
@@ -35,6 +35,15 @@ ActiveRecord::Schema.define(version: 2019_01_02_145755) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["session_id"], name: "index_param_sets_on_session_id"
+  end
+
+  create_table "parameters", force: :cascade do |t|
+    t.string "name"
+    t.string "value"
+    t.integer "value_set_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["value_set_id"], name: "index_parameters_on_value_set_id"
   end
 
   create_table "products", force: :cascade do |t|
@@ -88,7 +97,6 @@ ActiveRecord::Schema.define(version: 2019_01_02_145755) do
     t.string "name"
     t.string "shortComment"
     t.string "comment"
-    t.string "value"
     t.integer "param_set_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

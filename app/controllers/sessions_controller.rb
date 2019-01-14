@@ -115,14 +115,28 @@ class SessionsController < ApplicationController
       @session.param_sets[0].mode =  doc.xpath("//library/libmode").text
       #@session.param_sets[0].tuneProject =  doc.xpath("//valueset")
 
-      doc.xpath("//valueset/value").each do |value|
+      doc.xpath("//paramset/valueset").each do |valueSet|
         #puts "Name: " + value["name"] + ", = " + value.xpath("field")[0].text
         vs = @session.param_sets[0].value_sets.build
-        vs.name = value["name"]
-        vs.value = value.xpath("field")[0].text
-        vs.comment = value.xpath("comment")[0].present? ? value.xpath("comment")[0].text : ""
-        vs.shortComment = ""
+        vs.name = valueSet.xpath("name").text
+        vs.comment = valueSet.xpath("comment")[0].present? ? valueSet.xpath("comment")[0].text : ""
+        vs.shortComment = valueSet.xpath("shortcomment")[0].present? ? valueSet.xpath("shortcomment")[0].text : ""
+
+        valueSet.xpath("value").each do |parameter|
+          p = vs.parameters.build
+          p.name = parameter["name"]
+          p.value = parameter.xpath("field")[0].text
+        end
       end
+
+    #  doc.xpath("//valueset/value").each do |value|
+        #puts "Name: " + value["name"] + ", = " + value.xpath("field")[0].text
+      #  vs = @session.param_sets[0].value_sets.build
+      #  vs.name = value["name"]
+      #  vs.value = value.xpath("field")[0].text
+      #  vs.comment = value.xpath("comment")[0].present? ? value.xpath("comment")[0].text : ""
+        #vs.shortComment = ""
+      #end
 
 
       puts "!!!session\n" + @ssesion.to_yaml
