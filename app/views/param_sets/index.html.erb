@@ -35,6 +35,8 @@
                       <p><strong>Version: </strong><%= result.productVersion %></p>
                       <p><strong>Mode: </strong><%= result.mode %></p>
                       <p><strong>Param Sets: </strong><%= result.value_sets.count %>
+                        <p><strong>Project File: </strong><%= result.session.project_file %>
+
                     </div><br>
 
                     <% result.value_sets.each do |vs| %>

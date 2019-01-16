@@ -23,12 +23,25 @@ class ParamSetsController < ApplicationController
     puts "YAML: " + params.to_yaml
     query = params[:search_param_sets].presence && params[:search_param_sets][:query]
 
+    query = query.split("=")
     if query
-      puts "Calling SEARCH... "
-      @param_sets = ParamSet.search query, highlight: true
-      @param_sets.inspect
-      @query = query
+      if query.size == 1
+        puts "Calling standard SEARCH... "
+        @param_sets = ParamSet.search query, highlight: true
+        #@param_sets.inspect
+        @query = query[0].to_s
+      else
+        puts "Calling multifield SEARCH... "
+        puts "QUERY =" + query.to_yaml
+        @param_sets = ParamSet.search query[0] , fields: ["parameters.name"], where: {"parameters.value" => query[1]}
+        @query = query[0].to_s
+      end
     end
+
+    if query
+
+    end
+
   end
 
   # GET /param_sets/1

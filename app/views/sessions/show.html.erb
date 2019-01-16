@@ -1,22 +1,28 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Finished at:</strong>
-  <%= @session.finished_at %>
-</p>
+<br>
+<div class="card">
+  <div class="card-header">
+    Session Info
+  </div>
+  <div class="card-body">
+    <h5 class="card-title"><%= @session.param_sets[0].projectName %></h5>
+    <br>
+    <p class="card-text"><strong>Product: </strong><%= @session.param_sets[0].productName %></p>
+    <p class="card-text"><strong>Version: </strong><%= @session.param_sets[0].productVersion %></p>
+    <p class="card-text"><strong>Mode: </strong><%= @session.param_sets[0].mode %></p>
+    <p class="card-text"><strong>Vehicle: </strong><%= @session.vehicle %></p>
+    <p class="card-text"><strong>Finished At: </strong><%= @session.finished_at %></p>
+    <p class="card-text"><strong>State: </strong><%= @session.state %></p>
+    <p class="card-text"><strong>Project File: </strong><%= @session.project_file %></p>
 
-<p>
-  <strong>Vehicle:</strong>
-  <%= @session.vehicle %>
-</p>
 
-<p>
-  <strong>State:</strong>
-  <%= @session.state %>
-</p>
-<p>
-  <h2>Parameter Sets:</h2>
+  </div>
+</div>
+<br>
+
   <% if @session.param_sets[0].value_sets.size > 0 %>
+  <h2>Parameter Sets (<%= @session.param_sets[0].value_sets.size %>):</h2>
     <table class="table table-bordered table-sm">
       <tr>
         <th>Use Case</th>
