@@ -61,3 +61,8 @@ Todo:
 SQL: Snapshots
 Binaer-Daten: speichern, z.b. PDFs ?
 Versionierung von Parametern
+
+
+### Primer ###
+https://medium.com/@broccolini/design-systems-at-github-c8e5378d2542
+https://codepen.io/team/GitHub/pen/xYLdZd

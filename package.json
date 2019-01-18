@@ -1,5 +1,7 @@
 {
   "name": "streamline",
   "private": true,
-  "dependencies": {}
+  "dependencies": {
+    "primer": "^10.10.4"
+  }
 }
