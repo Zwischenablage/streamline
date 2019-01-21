@@ -2,6 +2,6 @@
   "name": "streamline",
   "private": true,
   "dependencies": {
-    "primer": "^10.10.4"
+    "primer": "^10.10.5"
   }
 }

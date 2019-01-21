@@ -5,6 +5,8 @@ docker run --name elasticsearch-rails-searchapp --publish 9200:9200 --env "disco
 4. Adding Bootstrap support: https://github.com/twbs/bootstrap-rubygem
 5. Elastic Search HowTo:https://iridakos.com/tutorials/2017/12/03/elasticsearch-and-rails-tutorial.html
 
+6. Install CSS primer - https://primer.style
+ npm i primer@latest
 
 
 Commands
