@@ -23,12 +23,12 @@
                   Streamline
             </div>
 
-    <nav id="bc" aria-label="Breadcrumb" class="flex-self-center">
-      <ol>
-        <li class="breadcrumb-item"><a href="<%= customer_path(@customer) %>"><%= @customer.name %></a></li>
-        <li class="breadcrumb-item"><a href="<%= customer_project_path(@customer,@project) %>"><%= @project.name %></a></li>
+      <nav id="bc" aria-label="Breadcrumb" class="flex-self-center">
+        <ol>
+          <li class="breadcrumb-item"><a href="<%= customer_path(@customer) %>"><%= @customer.name %></a></li>
+          <% if @project.present? && @project.name.present? %><li class="breadcrumb-item" aria-current="page"><a href="<%= customer_project_path(@customer,@project) %>"><%= @project.name %></a></li><% end %>
+          <% if @session.present? && @session.session_type.present? %><li class="breadcrumb-item active" aria-current="page"><%= @session.session_type + " - " + @session.description %></li><% end %>
 
-    </div>
 
         </ol>
       </nav>
