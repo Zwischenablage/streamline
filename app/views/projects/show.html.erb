@@ -55,3 +55,35 @@
     <%= render :template => "projects/_session_table", locals: {session_type: :Tuning, id_tag: "tuning", active:""} %>
 </div>
 <% end %>
+
+
+<% if @project.sessions.size > 0 %>
+<nav class="UnderlineNav" aria-label="Foo bar">
+  <div class="UnderlineNav-body">
+<% end %>
+  <% if @project.sessions.where(session_type: :Porting).present? %>
+    <a href="#url" class="UnderlineNav-item">
+      <%= octicon "tools", :class => "UnderlineNav-octicon" %>
+      Portings
+      <span class="Counter"><%=  @project.sessions.where(session_type: :Porting).size %></span>
+    </a>
+  <% end %>
+  <% if @project.sessions.where(session_type: :APQM).present? %>
+    <a href="#url" class="UnderlineNav-item">
+      <%= octicon "verified", :class => "UnderlineNav-octicon" %>
+      AQPMs
+      <span class="Counter"><%=  @project.sessions.where(session_type: :APQM).size %></span>
+    </a>
+  <% end %>
+  <% if @project.sessions.where(session_type: :Tuning).present? %>
+    <a href="#url" class="UnderlineNav-item selected">
+      <%= octicon "unmute", :class => "UnderlineNav-octicon" %>
+      Tunings
+      <span class="Counter"><%=  @project.sessions.where(session_type: :Tuning).size %></span>
+    </a>
+  <% end %>
+<% if @project.sessions.size > 0 %>
+</div>
+</nav>
+<% end %>
+<%= render :template => "projects/_session_table", locals: {session_type: :Tuning, id_tag: "tuning", active:""} %>
