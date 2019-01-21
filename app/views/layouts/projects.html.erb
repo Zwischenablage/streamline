@@ -19,14 +19,14 @@
                 <%= embedded_svg 'icons/streamline.svg', class: 'octicon octicon-mark-github', width: "100", height: "24"%>
             </a>
             <div class="flex-self-center Details-content--shown">
-                <button id="streamline_button" class="btn-link text-white link-white no-underline js-menu-target h2" type="button" aria-haspopup="true" aria-expanded="false">
+                <button id="streamline_button" class="btn-link text-white link-white no-underline js-menu-target h2 py-3" type="button" aria-haspopup="true" aria-expanded="false">
                   Streamline
             </div>
 
       <nav id="bc" aria-label="Breadcrumb" class="flex-self-center">
         <ol>
-          <li class="breadcrumb-item py-3"><a href="<%= customer_path(@customer) %>"><%= @customer.name %></a></li>
-          <% if @project.present? && @project.name.present? %><li class="breadcrumb-item py-3 active" aria-current="page"><%= @project.name %></li><% end %>
+          <li class="breadcrumb-item"><a href="<%= customer_path(@customer) %>"><%= @customer.name %></a></li>
+          <% if @project.present? && @project.name.present? %><li class="breadcrumb-item active" aria-current="page"><%= @project.name %></li><% end %>
         </ol>
       </nav>
 
