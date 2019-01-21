@@ -29,7 +29,7 @@
           <tr class="js-navigation-item">
               <td class="icon"><%= octicon(getOcticon(session_type), label: "directory", class: "octicon octicon-file-directory", width:14, height: 16, role: "img") %></td>
               <td class="content"><span class="css-truncate css-truncate-target"><%= link_to session.session_type, class:"js-navigation-open" %></span></td>
-              <td class="message"><%= session.description %></td>
+              <td class="message"><%= link_to session.description, customer_project_session_path(@customer, @project, session), class: "branch-name" %></td>
               <td class="age"><%= session.vehicle %></td>
               <td style="padding-right: 0px; width: 23px;"><%= link_to octicon("pencil"), edit_customer_project_session_path(@customer,@project, session) %></td>
               <td style="padding-right: 0px; width: 23px;"><%= link_to octicon("trashcan"), customer_project_session_path(@customer, @project, session),
