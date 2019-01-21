@@ -1,5 +1,6 @@
 class ProjectsController < ApplicationController
   before_action :set_project, only: [:show, :edit, :update, :destroy]
+  helper ProjectsHelper
 
   # GET /projects
   # GET /projects.json
@@ -14,6 +15,9 @@ class ProjectsController < ApplicationController
   def show
     puts "SHOW!!!"
     @customer = Customer.find(params[:customer_id])
+    if params[:active_tab].present?
+      @active_tab = params[:active_tab]
+    end
   end
 
   # GET /projects/new

@@ -6,6 +6,105 @@
 
 }
 
+.Header {
+    background-color: #24292e;
+    color: hsla(0,0%,100%,.75);
+    padding-bottom: 12px;
+    padding-top: 12px;
+    z-index: 32;
+}
+
+.container {
+    margin-left: auto;
+    margin-right: auto;
+    width: 980px;
+}
+
+.commit-tease {
+    background-color: #f1f8ff;
+    border: 1px solid #c8e1ff;
+    color: #586069;
+    font-size: 13px;
+    line-height: 20px;
+    margin-bottom: -1px;
+    padding: 10px;
+    position: relative;
+}
+
+.file-wrap {
+    border: 1px solid #dfe2e5;
+    border-bottom-left-radius: 3px;
+    border-bottom-right-radius: 3px;
+    border-top: 0;
+    margin-bottom: 10px;
+}
+
+table.files {
+    background: #fff;
+    border-radius: 2px;
+    width: 100%;
+}
+.css-truncate.css-truncate-target, .css-truncate .css-truncate-target {
+    display: inline-block;
+    max-width: 125px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    vertical-align: top;
+    white-space: nowrap;
+}
+table.files td.message a {
+    color: #6a737d;
+}
+table.files td {
+    border-top: 1px solid #eaecef;
+    line-height: 20px;
+    padding: 6px 3px;
+}
+table.files td .css-truncate {
+    max-width: 100%;
+}
+a {
+    color: #0366d6;
+    text-decoration: none;
+}
+table.files td.icon .octicon-file-directory {
+    color: rgba(3,47,98,.5);
+}
+
+table.files td.icon {
+    color: rgba(3,47,98,.55);
+    padding-left: 10px;
+    padding-right: 2px;
+    width: 17px;
+}
+table.files td.content {
+    max-width: 180px;
+}
+table.files td.message {
+    color: #6a737d;
+    max-width: 442px;
+    overflow: hidden;
+    padding-left: 10px;
+}
+table.files td.age {
+    color: #6a737d;
+    padding-right: 10px;
+    text-align: right;
+    white-space: nowrap;
+    width: 125px;
+}
+
+td.content {
+  padding-left: 10px;
+}
+td.message {
+  padding-left: 30px;
+  min-width: 300px;
+}
+table.files td.message a {
+    color: #6a737d;
+}
+
 #streamline_button {margin-left: 10px}
 
 #bc {
@@ -18,8 +117,8 @@
 }
 
 // Custom bootstrap variables must be set or imported *before* bootstrap.
-//@import "bootstrap";
 @import "primer/index.scss";
+@import "github";
 
 
 /* https://github.com/mojombo/tpw/blob/master/css/syntax.css */

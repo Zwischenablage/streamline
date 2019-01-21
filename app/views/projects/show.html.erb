@@ -1,89 +1,58 @@
 <p id="notice"><%= notice %></p>
 
-<h5 id="overflow-auto-and-scroll"><%= @customer.name %> <code><%= @project.name %></code> - OracleID: <code><%= @project.oracleID %></code></h5>
+<div role="main" class="application-main " data-commit-hovercards-enabled="">
+  <div itemscope="" itemtype="http://schema.org/SoftwareSourceCode" class="">
+    <div id="js-repo-pjax-container" data-pjax-container="">
+      <div class="pagehead repohead readability-menu experiment-repo-nav">
+        <div class="repohead-details-container clearfix container">
+          <h1>
+            <%= octicon("repo") %>
+            <span class="author"><a href="#url" class="url fn" rel="author">cmwinters</a></span>
+            <span class="path-divider">/</span>
+            <strong><a href="#url">project</a></strong>
+          </h1>
+        </div>
+        <div class="container-lg px-3">
+          <nav class="reponav clearfix" role="navigation">
+            <%= link_to octicon("clippy") + ' Infos', customer_project_path, class: "reponav-item " + isActiveTab("", true) %>
+            <% if @project.sessions.where(session_type: :Porting).present? %>
+            <%= link_to octicon("tools") + ' Portings ' + getCounter(:Porting), customer_project_path( :active_tab => "porting"), class: "reponav-item " + isActiveTab("porting") %>
+            <% end %>
+            <% if @project.sessions.where(session_type: :APQM).present? %>
+            <%= link_to octicon("verified") + ' APQMs ' + getCounter(:APQM), customer_project_path( :active_tab => "apqm"), class: "reponav-item "  + isActiveTab("apqm") %>
+            <% end %>
+            <% if @project.sessions.where(session_type: :Tuning).present? %>
+            <%= link_to octicon("unmute") + ' Tunings ' + getCounter(:Tuning), customer_project_path( :active_tab => "tuning"), class: "reponav-item "  + isActiveTab("tuning") %>
+            <% end %>
+
+          </nav>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<% if @active_tab.present? %>
+  <% case @active_tab %>
+    <% when "porting" %>
+      <%= render :template => "projects/_session_table", locals: {session_type: :Porting, id_tag: "porting", active:""} %>
+    <% when "apqm" %>
+      <%= render :template => "projects/_session_table", locals: {session_type: :APQM, id_tag: "apqm", active:""} %>
+    <% when "tuning" %>
+      <%= render :template => "projects/_session_table", locals: {session_type: :Tuning, id_tag: "tuning", active:""} %>
+  <% end %>
+  <% else %>
+  <h5 id="overflow-auto-and-scroll"><%= @customer.name %> <code><%= @project.name %></code> - OracleID: <code><%= @project.oracleID %></code></h5>
+<% end %>
+
+
+
+
+
+
+
 
 <br><br>
 <%= link_to 'Add Session', new_customer_project_session_path(@customer, @project) %>
 <%= link_to 'Edit', edit_customer_project_path(@project) %> |
 <%= link_to 'Back', customer_projects_path %>
 <br>
-<% if false %>
-  <h2>Sessions</h2>
-  <table class="table">
-    <tr>
-      <th>Session Type</th>
-      <th>Description</th>
-      <th>Finished At</th>
-      <th>Vehicle</th>
-      <th>State</th>
-    </tr>
-<% end %>
-<% 0.times do %> # @project.sessions.each do |session| %>
-  <tr>
-    <td><%= session.session_type %></td>
-    <td><%= session.description %></td>
-    <td><%= session.finished_at %></td>
-    <td><%= session.vehicle %></td>
-    <td><%= session.state %></td>
-    <td><%= link_to 'Show', customer_project_session_path(@customer, @project, session) %></td>
-    <td><%= link_to 'Edit', edit_customer_project_session_path(@customer,@project, session) %></td>
-    <td><%= link_to 'Delete', customer_project_session_path(@customer, @project, session),
-            method: :delete,
-            data: { confirm: 'Are you sure?' } %></td>
-  </tr>
-<% end %>
-<% if @project.sessions.size > 0 %>
-</table>
-<% end %>
-<% if @project.sessions.size > 0 %>
-<nav>
-  <div class="nav nav-tabs" id="nav-tab" role="tablist">
-  <% if @project.sessions.where(session_type: :Porting).present? %>
-    <a class="nav-item nav-link active" id="nav-porting-tab" data-toggle="tab" href="#nav-porting" role="tab" aria-controls="nav-porting" aria-selected="true">Portings</a>
-  <% end %>
-  <% if @project.sessions.where(session_type: :APQM).present? %>
-    <a class="nav-item nav-link" id="nav-apqm-tab" data-toggle="tab" href="#nav-apqm" role="tab" aria-controls="nav-apqm" aria-selected="false">APQMs</a>
-  <% end %>
-  <% if @project.sessions.where(session_type: :Tuning).present? %>
-  <a class="nav-item nav-link" id="nav-tuning-tab" data-toggle="tab" href="#nav-tuning" role="tab" aria-controls="nav-tuning" aria-selected="false">Tunings</a>
-  <% end %>
-  </div>
-</nav>
-<div class="tab-content" id="nav-tabContent">
-    <%= render :template => "projects/_session_table", locals: {session_type: :Porting, id_tag: "porting", active: "show active"} %>
-    <%= render :template => "projects/_session_table", locals: {session_type: :APQM, id_tag: "apqm", active: ""} %>
-    <%= render :template => "projects/_session_table", locals: {session_type: :Tuning, id_tag: "tuning", active:""} %>
-</div>
-<% end %>
-
-
-<% if @project.sessions.size > 0 %>
-<nav class="UnderlineNav" aria-label="Foo bar">
-  <div class="UnderlineNav-body">
-<% end %>
-  <% if @project.sessions.where(session_type: :Porting).present? %>
-    <a href="#url" class="UnderlineNav-item">
-      <%= octicon "tools", :class => "UnderlineNav-octicon" %>
-      Portings
-      <span class="Counter"><%=  @project.sessions.where(session_type: :Porting).size %></span>
-    </a>
-  <% end %>
-  <% if @project.sessions.where(session_type: :APQM).present? %>
-    <a href="#url" class="UnderlineNav-item">
-      <%= octicon "verified", :class => "UnderlineNav-octicon" %>
-      AQPMs
-      <span class="Counter"><%=  @project.sessions.where(session_type: :APQM).size %></span>
-    </a>
-  <% end %>
-  <% if @project.sessions.where(session_type: :Tuning).present? %>
-    <a href="#url" class="UnderlineNav-item selected">
-      <%= octicon "unmute", :class => "UnderlineNav-octicon" %>
-      Tunings
-      <span class="Counter"><%=  @project.sessions.where(session_type: :Tuning).size %></span>
-    </a>
-  <% end %>
-<% if @project.sessions.size > 0 %>
-</div>
-</nav>
-<% end %>
-<%= render :template => "projects/_session_table", locals: {session_type: :Tuning, id_tag: "tuning", active:""} %>

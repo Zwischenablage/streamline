@@ -1,30 +1,75 @@
-<% if @project.sessions.where(session_type: session_type).present? %>
-  <div class="tab-pane fade <%= active %>" id="nav-<%= id_tag %>" role="tabpanel" aria-labelledby="nav-<%= id_tag %>-tab">
-    <table class="table">
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-        <th>Finished At</th>
-        <th>Vehicle</th>
-        <th>State</th>
-        <th>Show</th>
-        <th>Edit</th>
-        <th>Delete</th>
-      </tr>
-      <% @project.sessions.where(session_type: session_type).each do |session| %>
-      <tr>
-          <td><%= session.session_type %></td>
-          <td><%= session.description %></td>
-          <td><%= session.finished_at %></td>
-          <td><%= session.vehicle %></td>
-          <td><%= session.state %></td>
-          <td><%= link_to 'Show', customer_project_session_path(@customer, @project, session) %></td>
-          <td><%= link_to 'Edit', edit_customer_project_session_path(@customer,@project, session) %></td>
-          <td><%= link_to 'Delete', customer_project_session_path(@customer, @project, session),
-                  method: :delete,
-                  data: { confirm: 'Are you sure?' } %></td>
-        </tr>
-      <% end %>
-    </table>
+<div class="container new-discussion-timeline experiment-repo-nav">
+  <div class="commit-tease js-details-container Details d-flex rounded-top-1" data-issue-and-pr-hovercards-enabled="">
+      <div class="flex-auto f6 mr-3">
+        <a href="/Zwischenablage/streamline/commits?author=Zwischenablage" class="commit-author tooltipped tooltipped-s user-mention" aria-label="View all commits by Zwischenablage">Zwischenablage</a>
+          <a data-pjax="true" title="extending sessions view" class="message" href="/Zwischenablage/streamline/commit/26abe27335a1829b7cb68032ea8cfda62a3477db">extending sessions view</a>
+      </div>
+      <div class="no-wrap">
+        Latest commit
+        <a class="commit-tease-sha" href="/Zwischenablage/streamline/commit/26abe27335a1829b7cb68032ea8cfda62a3477db" data-pjax="">
+          26abe27
+        </a>
+        <span itemprop="dateModified"><relative-time datetime="2019-01-21T11:37:30Z" title="21 Jan 2019, 12:37 CET">5 hours ago</relative-time></span>
+      </div>
+    </div>
+
+    <div class="file-wrap">
+      <a class="d-none js-permalink-shortcut" data-hotkey="y" href="/Zwischenablage/streamline/tree/26abe27335a1829b7cb68032ea8cfda62a3477db">Permalink</a>
+      <table class="files js-navigation-container js-active-navigation-container" data-pjax="">
+        <thead>
+          <tr>
+            <th><span class="sr-only">Type</span></th>
+            <th><span class="sr-only">Description</span></th>
+            <th><span class="sr-only">Vehicle</span></th>
+            <th><span class="sr-only">State</span></th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @project.sessions.where(session_type: session_type).each do |session| %>
+          <tr class="js-navigation-item">
+              <td class="icon"><%= octicon(getOcticon(session_type), label: "directory", class: "octicon octicon-file-directory", width:14, height: 16, role: "img") %></td>
+              <td class="content"><span class="css-truncate css-truncate-target"><%= link_to session.session_type, class:"js-navigation-open" %></span></td>
+              <td class="message"><%= session.description %></td>
+              <td class="age"><%= session.vehicle %></td>
+              <td style="padding-right: 0px; width: 23px;"><%= link_to octicon("pencil"), edit_customer_project_session_path(@customer,@project, session) %></td>
+              <td style="padding-right: 0px; width: 23px;"><%= link_to octicon("trashcan"), customer_project_session_path(@customer, @project, session),
+                      method: :delete,
+                      data: { confirm: 'Are you sure?' } %></td>
+            </tr>
+          <% end %>
+    </tbody>
+      </table>
+
+    </div>
   </div>
-<% end %>
+
+  <% if @project.sessions.where(session_type: session_type).present? %>
+    <div class="tab-pane fade <%= active %>" id="nav-<%= id_tag %>" role="tabpanel" aria-labelledby="nav-<%= id_tag %>-tab">
+      <table class="table">
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Finished At</th>
+          <th>Vehicle</th>
+          <th>State</th>
+          <th>Show</th>
+          <th>Edit</th>
+          <th>Delete</th>
+        </tr>
+        <% @project.sessions.where(session_type: session_type).each do |session| %>
+        <tr>
+            <td><%= session.session_type %></td>
+            <td><%= session.description %></td>
+            <td><%= session.finished_at %></td>
+            <td><%= session.vehicle %></td>
+            <td><%= session.state %></td>
+            <td><%= link_to 'Show', customer_project_session_path(@customer, @project, session) %></td>
+            <td><%= link_to 'Edit', edit_customer_project_session_path(@customer,@project, session) %></td>
+            <td><%= link_to 'Delete', customer_project_session_path(@customer, @project, session),
+                    method: :delete,
+                    data: { confirm: 'Are you sure?' } %></td>
+          </tr>
+        <% end %>
+      </table>
+    </div>
+  <% end %>
