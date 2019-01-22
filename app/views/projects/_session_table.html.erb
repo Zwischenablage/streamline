@@ -1,44 +1,36 @@
-<div class="container new-discussion-timeline experiment-repo-nav">
-  <div class="commit-tease js-details-container Details d-flex rounded-top-1" data-issue-and-pr-hovercards-enabled="">
-      <div class="flex-auto f6 mr-3">
-        <a href="/Zwischenablage/streamline/commits?author=Zwischenablage" class="commit-author tooltipped tooltipped-s user-mention" aria-label="View all commits by Zwischenablage">Zwischenablage</a>
-          <a data-pjax="true" title="extending sessions view" class="message" href="/Zwischenablage/streamline/commit/26abe27335a1829b7cb68032ea8cfda62a3477db">extending sessions view</a>
-      </div>
-      <div class="no-wrap">
-        Latest commit
-        <a class="commit-tease-sha" href="/Zwischenablage/streamline/commit/26abe27335a1829b7cb68032ea8cfda62a3477db" data-pjax="">
-          26abe27
-        </a>
-        <span itemprop="dateModified"><relative-time datetime="2019-01-21T11:37:30Z" title="21 Jan 2019, 12:37 CET">5 hours ago</relative-time></span>
-      </div>
-    </div>
-
-    <div class="file-wrap">
-      <a class="d-none js-permalink-shortcut" data-hotkey="y" href="/Zwischenablage/streamline/tree/26abe27335a1829b7cb68032ea8cfda62a3477db">Permalink</a>
-      <table class="files js-navigation-container js-active-navigation-container" data-pjax="">
-        <thead>
-          <tr>
-            <th><span class="sr-only">Type</span></th>
-            <th><span class="sr-only">Description</span></th>
-            <th><span class="sr-only">Vehicle</span></th>
-            <th><span class="sr-only">State</span></th>
-          </tr>
-        </thead>
-        <tbody>
-          <% @project.sessions.where(session_type: session_type).each do |session| %>
-          <tr class="js-navigation-item">
-              <td class="icon"><%= octicon(getOcticon(session_type), label: "directory", class: "octicon octicon-file-directory", width:14, height: 16, role: "img") %></td>
-              <td class="content"><span class="css-truncate css-truncate-target"><%= link_to session.session_type, class:"js-navigation-open" %></span></td>
-              <td class="message"><%= link_to session.description, customer_project_session_path(@customer, @project, session), class: "branch-name" %></td>
-              <td class="age"><%= session.vehicle %></td>
-              <td style="padding-right: 0px; width: 23px;"><%= link_to octicon("pencil"), edit_customer_project_session_path(@customer,@project, session) %></td>
-              <td style="padding-right: 0px; width: 23px;"><%= link_to octicon("trashcan"), customer_project_session_path(@customer, @project, session),
-                      method: :delete,
-                      data: { confirm: 'Are you sure?' } %></td>
-            </tr>
-          <% end %>
-    </tbody>
-      </table>
-
+<div class="Box">
+  <div class="Box-header Box-header--blue">
+    <div class="container-lg clearfix">
+      <h3 class="Box-title"><div class="col-1 float-left">Type</div></h3>
+      <h3 class="Box-title"><div class="col-6 float-left">Description</div></h3>
+      <h3 class="Box-title"><div class="col-2 float-left">Finished at</div></h3>
+      <h3 class="Box-title"><div class="col-2 float-left">Vehicle</div></h3>
+      <h3 class="Box-title"><div style="text-align: right;" class="col-1 float-left">Actions</div></h3>
     </div>
   </div>
+    <% @project.sessions.where(session_type: session_type).each do |session| %>
+    <div class="Box-row2 Box-row--hover-blue">
+      <div class="container-lg clearfix">
+        <div class="col-1 float-left">
+          <%= octicon(getOcticon(session_type), label: "directory", class: "octicon octicon-file-directory", width:14, height: 16, role: "img") %>
+          <%= link_to session.session_type, class:"js-navigation-open" %>
+        </div>
+        <div class="col-6 float-left">
+          <%= link_to session.description, customer_project_session_path(@customer, @project, session), class: "branch-name" %>
+        </div>
+        <div class="col-2 float-left">
+          <%= session.finished_at %>
+        </div>
+        <div class="col-2 float-left">
+          <%= session.vehicle %>
+        </div>
+        <div class="col-1 float-right" style="text-align: right;">
+          <%= link_to octicon("pencil"), edit_customer_project_session_path(@customer,@project, session) %>
+          <%= link_to octicon("trashcan"), customer_project_session_path(@customer, @project, session),
+                    method: :delete,
+                    data: { confirm: 'Are you sure?' } %>
+        </div>
+      </div>
+      </div>
+    <% end %>
+</div>
