@@ -14,6 +14,7 @@
           <p id="notice"><%= notice %></p>
           <nav class="reponav clearfix" role="navigation">
             <%= link_to octicon("clippy") + ' Infos', customer_project_path, class: "reponav-item " + isActiveTab("", true) %>
+            <%= link_to octicon("comment-discussion") + ' Log', customer_project_path( :active_tab => "log"), class: "reponav-item " + isActiveTab("log") %>
             <% if @project.sessions.where(session_type: :Porting).present? %>
             <%= link_to octicon("tools") + ' Portings ' + getCounter(:Porting), customer_project_path( :active_tab => "porting"), class: "reponav-item " + isActiveTab("porting") %>
             <% end %>
@@ -33,6 +34,8 @@
   <div class="container new-discussion-timeline experiment-repo-nav">
   <% if @active_tab.present? %>
     <% case @active_tab %>
+      <% when "log" %>
+        <%= render :template => "projects/_log" %>
       <% when "porting" %>
         <%= render :template => "projects/_session_table", locals: {session_type: :Porting, id_tag: "porting", active:""} %>
       <% when "apqm" %>

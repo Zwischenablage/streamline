@@ -1,29 +1,22 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Customers</h1>
-
-<table class="table table-hover">
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @customers.each do |customer| %>
-      <tr>
-        <td><%= customer.name %></td>
-        <td><%= link_to 'Show', customer %></td>
-        <td><%= link_to 'Edit', edit_customer_path(customer) %></td>
-        <td><%= link_to 'Destroy', customer, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-<%= octicon "list-unordered", :height => 32,  :class => "right left", :"aria-label" => "hi" %>
-<%= octicon "squirrel", :height => 32,  :class => "right left", :"aria-label" => "hi" %>
-<a href="#url" class="branch-name">a_new_feature_branch</a>
-<br>
-
-<%= link_to 'New Customer', new_customer_path %>
+<div class="container">
+  <div class="Box">
+    <div class="Box-header Box-header--blue">
+      <h2>Customers <%= link_to octicon("diff-added", :height => 24), new_customer_path %></h2>
+    </div>
+      <% @customers.each do |customer| %>
+      <div class="Box-row2 Box-row--hover-blue">
+        <div class="container-lg clearfix">
+          <div class="col-11 float-left">
+            <%= link_to customer.name, customer %>
+          </div>
+          <div class="col-1 float-right" style="text-align: right;">
+            <%= link_to octicon("pencil"), edit_customer_path(customer) %>
+            <%= link_to octicon("trashcan"), customer, method: :delete, data: { confirm: 'Are you sure?' } %>
+          </div>
+        </div>
+        </div>
+      <% end %>
+  </div>
+</div>

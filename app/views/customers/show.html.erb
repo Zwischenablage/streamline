@@ -1,43 +1,45 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Name:</strong>
-  <%= @customer.name %>
-</p>
+<div class="container">
+  <div class="Box">
+    <div class="Box-header Box-header--blue">
+      <h2>Projects <%= link_to octicon("diff-added", :height => 24), new_customer_project_path(@customer)  %></h2>
+    </div>
 
-<h2>Add a Project:</h2>
-<%= link_to 'Add Project', new_customer_project_path(@customer) %>
-<br>
-<%= link_to 'Edit', edit_customer_path(@customer) %> |
-<%= link_to 'Back', customers_path %>
+    <% if @customer.projects.size > 0 %>
+      <% @customer.projects.each do |project| %>
+      <div class="Box-row2 Box-row--hover-blue">
+        <div class="Box-title">
+          <div class="container-lg clearfix">
+            <div class="col-4 float-left">Project Name</div>
+            <div class="col-4 float-left">Description</div>
+            <div class="col-1 float-left">OracleID</div>
+            <div class="col-2 float-left">Craeted At</div>
+            <div class="col-1 float-right" style="text-align: right;">Actions</div>
+          </div>
+        </div>
+        <div class="container-lg clearfix">
+          <div class="col-4 float-left">
+            <%= link_to project.name, customer_project_path(@customer, project) %>
+          </div>
+          <div class="col-4 float-left">
+            <%= project.description %>
+          </div>
+          <div class="col-1 float-left">
+            <%= project.oracleID %>
+          </div>
+          <div class="col-2 float-left">
+            <%= project.created_at %>
+          </div>
+          <div class="col-1 float-right" style="text-align: right;">
+            <%= link_to octicon("pencil"), edit_customer_project_path(@customer, project) %>
+            <%= link_to octicon("trashcan"), customer_project_path(@customer, project), method: :delete, data: { confirm: 'Are you sure?' } %>
+          </div>
+        </div>
+        </div>
+      <% end %>
+    <% end %>
 
 
-<% if @customer.projects.size > 0 %>
-  <h2>Projects</h2>
-  <table class="table table-striped">
-    <tr>
-      <th>Project</th>
-      <th>Description</th>
-      <th>OracleID</th>
-      <th>Created At</th>
-      <th>Show</th>
-      <th>Edit</th>
-      <th>Delete</th>
-    </tr>
-<% end %>
-<% @customer.projects.each do |project| %>
-  <tr>
-    <td><%= project.name %></td>
-    <td><%= project.description %></td>
-    <td><%= project.oracleID %></td>
-    <td><%= project.created_at %></td>
-    <td><%= link_to 'Show', customer_project_path(@customer, project) %></td>
-    <td><%= link_to 'Edit', edit_customer_project_path(@customer, project) %></td>
-    <td><%= link_to 'Delete', customer_project_path(@customer, project),
-            method: :delete,
-            data: { confirm: 'Are you sure?' } %></td>
-  </tr>
-<% end %>
-<% if @customer.projects.size > 0 %>
-</table>
-<% end %>
+  </div>
+</div>
