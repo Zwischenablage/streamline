@@ -5,8 +5,6 @@ class CreateUsers < ActiveRecord::Migration[5.2]
       t.string :firstname
       t.string :lastname
 
-      t.belongs_to :session, foreign_key:true, index:true
-
       t.timestamps
     end
   end

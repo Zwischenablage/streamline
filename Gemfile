@@ -81,3 +81,5 @@ gem 'nokogiri'
 # github primer
 gem 'octicons'
 gem 'octicons_helper'
+
+gem 'seed_dump'

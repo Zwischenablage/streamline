@@ -1,10 +1,11 @@
 <%= simple_form_for [@customer, @project, @session] do |f| %>
+  <%= f.collection_select(:user_id, User.all, :id, :full_name) %>
   <%= f.input :session_type, collection: Session.session_types.keys, as: :radio_buttons  %>
   <%= f.input :description %>
   <%= f.input :comment %>
   <%= f.input :finished_at %>
   <%= f.input :vehicle %>
-  <%= f.input :state %>
+  <%= f.input :session_state , collection: Session.session_states.keys %>
   <%= f.input :project_file, collection: project_files %>
   <%= f.button :submit, class: "btn btn-primary btn-sm" %>
 <% end %>

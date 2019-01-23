@@ -18,14 +18,6 @@ ActiveRecord::Schema.define(version: 2019_01_23_073557) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "oems", force: :cascade do |t|
-    t.string "name"
-    t.integer "project_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["project_id"], name: "index_oems_on_project_id"
-  end
-
   create_table "param_sets", force: :cascade do |t|
     t.string "projectName"
     t.string "productName"
@@ -67,23 +59,23 @@ ActiveRecord::Schema.define(version: 2019_01_23_073557) do
     t.string "description"
     t.date "finished_at"
     t.string "vehicle"
-    t.integer "state"
+    t.integer "session_state"
     t.string "project_file"
     t.integer "project_id"
+    t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "comment"
     t.index ["project_id"], name: "index_sessions_on_project_id"
+    t.index ["user_id"], name: "index_sessions_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
     t.string "username"
     t.string "firstname"
     t.string "lastname"
-    t.integer "session_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["session_id"], name: "index_users_on_session_id"
   end
 
   create_table "value_set_maps", force: :cascade do |t|

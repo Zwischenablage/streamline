@@ -1,6 +1,4 @@
 Rails.application.routes.draw do
-  resources :oems
-  resources :session_types
   resources :users
   resources :param_sets do
     collection do

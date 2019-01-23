@@ -2,9 +2,11 @@
   <div class="Box-header Box-header--blue">
     <div class="container-lg clearfix">
       <h3 class="Box-title"><div class="col-1 float-left">Type</div></h3>
-      <h3 class="Box-title"><div class="col-6 float-left">Description</div></h3>
+      <h3 class="Box-title"><div class="col-4 float-left">Description</div></h3>
+      <h3 class="Box-title"><div class="col-2 float-left">Assigned</div></h3>
+      <h3 class="Box-title"><div class="col-1 float-left">Status</div></h3>
       <h3 class="Box-title"><div class="col-2 float-left">Finished at</div></h3>
-      <h3 class="Box-title"><div class="col-2 float-left">Vehicle</div></h3>
+      <h3 class="Box-title"><div class="col-1 float-left">Vehicle</div></h3>
       <h3 class="Box-title"><div style="text-align: right;" class="col-1 float-left">Actions</div></h3>
     </div>
   </div>
@@ -15,7 +17,7 @@
           <%= octicon(getOcticon(session_type), label: "directory", class: "octicon octicon-file-directory", width:14, height: 16, role: "img") %>
           <%= link_to session.session_type, class:"js-navigation-open" %>
         </div>
-        <div class="col-6 float-left">
+        <div class="col-4 float-left">
           <%= link_to session.description, customer_project_session_path(@customer, @project, session), class: "branch-name" %>
           <% if 1 %>
             <div class="text-small text-gray-light">
@@ -24,9 +26,16 @@
           <% end %>
         </div>
         <div class="col-2 float-left">
-          <%= session.finished_at %>
+          <%= User.find(session.user_id).full_name %>
+        </div>
+        <div class="col-1 float-left ">
+          <span title="session state" class="<%= getLabel(session) %>"><%= session.session_state %></span>
+
         </div>
         <div class="col-2 float-left">
+          <%= session.finished_at %>
+        </div>
+        <div class="col-1 float-left">
           <%= session.vehicle %>
         </div>
         <div class="col-1 float-right" style="text-align: right;">

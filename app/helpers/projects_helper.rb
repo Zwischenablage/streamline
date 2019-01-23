@@ -26,12 +26,21 @@ module ProjectsHelper
 
   def getOcticon session_type
     case session_type
-    when :Porting
-      return "tools"
-    when :APQM
-      return "verified"
-    when :Tuning
-      return "unmute"
+      when :Porting
+        return "tools"
+      when :APQM
+        return "verified"
+      when :Tuning
+        return "unmute"
     end
+  end
+
+  def getLabel session
+    if session.requested? then  return "Label Label--orange" end
+    if session.scheduled? then  return "Label bg-blue" end
+    if session.feedback? then  return "Label bg-red" end
+    if session.active? then  return "Label bg-green" end
+    if session.closed? then  return "Label Label--gray" end
+    return "Label Label--outline"
   end
 end
