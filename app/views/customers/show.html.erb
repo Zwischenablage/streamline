@@ -7,7 +7,7 @@
     </div>
 
     <% if @customer.projects.size > 0 %>
-      <% @customer.projects.each do |project| %>
+      <% @customer.projects.order("LOWER(name) ASC").each do |project| %>
       <div class="Box-row2 Box-row--hover-blue">
         <div class="Box-title">
           <div class="container-lg clearfix">

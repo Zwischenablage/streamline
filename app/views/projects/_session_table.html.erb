@@ -8,7 +8,7 @@
       <h3 class="Box-title"><div style="text-align: right;" class="col-1 float-left">Actions</div></h3>
     </div>
   </div>
-    <% @project.sessions.where(session_type: session_type).each do |session| %>
+    <% @project.sessions.where(session_type: session_type).order("finished_at DESC").each do |session| %>
     <div class="Box-row2 Box-row--hover-blue">
       <div class="container-lg clearfix">
         <div class="col-1 float-left">
@@ -17,6 +17,11 @@
         </div>
         <div class="col-6 float-left">
           <%= link_to session.description, customer_project_session_path(@customer, @project, session), class: "branch-name" %>
+          <% if 1 %>
+            <div class="text-small text-gray-light">
+              <%= session.comment %>
+            </div>
+          <% end %>
         </div>
         <div class="col-2 float-left">
           <%= session.finished_at %>

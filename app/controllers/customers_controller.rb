@@ -4,7 +4,7 @@ class CustomersController < ApplicationController
   # GET /customers
   # GET /customers.json
   def index
-    @customers = Customer.all
+    @customers = Customer.order("LOWER(name) ASC").all
   end
 
   # GET /customers/1

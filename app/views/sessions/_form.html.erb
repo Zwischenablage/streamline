@@ -1,6 +1,7 @@
 <%= simple_form_for [@customer, @project, @session] do |f| %>
   <%= f.input :session_type, collection: Session.session_types.keys, as: :radio_buttons  %>
   <%= f.input :description %>
+  <%= f.input :comment %>
   <%= f.input :finished_at %>
   <%= f.input :vehicle %>
   <%= f.input :state %>

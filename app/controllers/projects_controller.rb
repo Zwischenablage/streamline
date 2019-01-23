@@ -5,6 +5,7 @@ class ProjectsController < ApplicationController
   # GET /projects
   # GET /projects.json
   def index
+    puts "Projects@index"
     @customer = Customer.find(params[:customer_id])
     @projects = @customer.projects
 
@@ -13,7 +14,7 @@ class ProjectsController < ApplicationController
   # GET /projects/1
   # GET /projects/1.json
   def show
-    puts "SHOW!!!"
+    puts "Projects@show"
     @customer = Customer.find(params[:customer_id])
     if params[:active_tab].present?
       @active_tab = params[:active_tab]
