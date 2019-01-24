@@ -48,7 +48,9 @@ class SessionsController < ApplicationController
 
 
     #doc = Nokogiri::XML.parse(File.open("test.tproj")
-    parseTuneProject
+    if params[:session]["project_file"].size > 0
+      parseTuneProject
+    end
 
     #puts "HUHU\n" + params[:paramsets].to_yaml
     #puts "!!!session\n" + @ssesion.to_yaml
