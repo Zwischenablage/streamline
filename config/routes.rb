@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   resources :users
+  resources :portings
   resources :param_sets do
     collection do
       get :search

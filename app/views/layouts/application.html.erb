@@ -5,20 +5,62 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+
   </head>
 
-  <body>
-    <main role="main" class="container">
-      <nav aria-label="breadcrumb" class="breadcrumb d-flex justify-content-between">
-        <ol class="breadcrumb">
-          <li class ="breadcrumb-item"><%= link_to image_tag('icons/streamline.svg', class: 'streamline-icon', alt: 'Streamline Icon'), customers_path %></li>
+  <body class="emoji-size-boost page-responsive min-width-0 intent-mouse">
+    <div class="position-relative js-header-wrapper">
+      <header class="Header header-logged-out  position-relative f4 py-3" role="banner">
+        <div class="container-lg d-flex px-3">
+          <div class="d-flex flex-justify-between flex-items-center">
+            <a href="/" class="border-gray-dark no-underline text-white" aria-label="Github Style guide">
+                <%= embedded_svg 'icons/streamline.svg', class: 'octicon octicon-mark-github', width: "100", height: "24"%>
+            </a>
+            <div class="flex-self-center Details-content--shown">
+                <button id="streamline_button" class="btn-link text-white link-white no-underline js-menu-target h2 py-3" type="button" aria-haspopup="true" aria-expanded="false">
+                  Streamline
+            </div>
+
+      <nav id="bc" aria-label="Breadcrumb" class="flex-self-center">
+        <ol>
+          <% if @customer.present? && @customer.name.present? %>
+            <li class="breadcrumb-item" ><%= @customer.name %></li>
+          <% end %>
         </ol>
-        <%= link_to 'Search', param_sets_path, class: "btn btn-dark btn-sm" %>
       </nav>
 
+      </div>
+      <div class="d-flex flex-self-auto flex-justify-end col-12 col-lg-2">
+        <a href="#navigation" class="Details-content--shown d-lg-none btn btn-outline btn-dark mr-2">
+          Menu
+        </a>
+        <button type="button" aria-expanded="false" aria-controls="search-form" class="Details-content--shown d-lg-none btn btn-outline btn-dark py-2 js-details-target js-form-autofocus js-search-prop">
+          <svg height="16" aria-label="search" class="octicon octicon-search" viewBox="0 0 16 16" version="1.1" width="16" role="img"><path fill-rule="evenodd" d="M15.7 13.3l-3.81-3.83A5.93 5.93 0 0 0 13 6c0-3.31-2.69-6-6-6S1 2.69 1 6s2.69 6 6 6c1.3 0 2.48-.41 3.47-1.11l3.83 3.81c.19.2.45.3.7.3.25 0 .52-.09.7-.3a.996.996 0 0 0 0-1.41v.01zM7 10.7c-2.59 0-4.7-2.11-4.7-4.7 0-2.59 2.11-4.7 4.7-4.7 2.59 0 4.7 2.11 4.7 4.7 0 2.59-2.11 4.7-4.7 4.7z"></path></svg>
+        </button>
+        <div class="Details-content--hidden Details-lg-content--shown flex-self-center flex-auto col-12 ml-2 ml-lg-3">
+
+          <form accept-charset="UTF-8" autocomplete="off" class="mb-0 position-relative mx-2 anim-slide-in js-search" data-type="css" id="search-form" disabled="">
+    <input type="text" autocomplete="off" data-hotkey="s" placeholder="Search..." class="js-navigation-enable js-form-autofocus-target form-control width-full search-dark f4 f-lg-5" id="search-query" name="q">
+  </form>
+  <div class="js-search-results js-navigation-container js-active-navigation-container
+             position-absolute bg-white mt-3 mt-lg-1 mr-lg-3 right-0 box-shadow-medium
+             search-results" hidden="">
+    <div class="js-search-no-results p-3 p-lg-2" hidden="">
+      No results found for “<span class="js-search-query-text"></span>”
+    </div>
+  </div>
+
+
+        </div>
+        <button type="button" aria-expanded="false" aria-controls="search-form" class="d-lg-none btn btn-outline btn-link anim-fade-in fast text-white px-2 mr-n2 js-details-target Details-content--hidden js-escape-hatch">
+          <svg height="16" class="octicon octicon-x fill-white" aria-label="close" viewBox="0 0 12 16" version="1.1" width="12" role="img"><path fill-rule="evenodd" d="M7.48 8l3.75 3.75-1.48 1.48L6 9.48l-3.75 3.75-1.48-1.48L4.52 8 .77 4.25l1.48-1.48L6 6.52l3.75-3.75 1.48 1.48L7.48 8z"></path></svg>
+        </button>
+      </div>
+  </div>
+  </header>
+</div>
     <%= yield %>
-  </main>
   </body>
 </html>

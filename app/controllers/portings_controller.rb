@@ -1,0 +1,2 @@
+class PortingsController < ApplicationController
+end

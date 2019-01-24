@@ -8,6 +8,7 @@
   <div class="card-body">
     <h5 class="card-title"><%= @session.param_sets[0].projectName %></h5>
     <br>
+    <p class="card-text"><strong>Description: </strong><%= @session.description %></p>
     <p class="card-text"><strong>Product: </strong><%= @session.param_sets[0].productName %></p>
     <p class="card-text"><strong>Version: </strong><%= @session.param_sets[0].productVersion %></p>
     <p class="card-text"><strong>Mode: </strong><%= @session.param_sets[0].mode %></p>

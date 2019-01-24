@@ -24,7 +24,7 @@
             <% if @project.sessions.where(session_type: :Tuning).present? %>
             <%= link_to octicon("unmute") + ' Tunings ' + getCounter(:Tuning), customer_project_path( :active_tab => "tuning"), class: "reponav-item "  + isActiveTab("tuning") %>
             <% end %>
-            <%= link_to octicon("diff-added", :height => 24, :class => "red") , new_customer_project_session_path(@customer, @project), class: "reponav-item" + isActiveTab("")%>
+            <%= link_to octicon("diff-added", :height => 20, :class => "red") , new_customer_project_session_path(@customer, @project), class: "reponav-item" + isActiveTab("")%>
 
           </nav>
         </div>
@@ -47,4 +47,5 @@
     <% else %>
       <%= render :template => "projects/_info" %>
   <% end %>
+</div>
 </div>

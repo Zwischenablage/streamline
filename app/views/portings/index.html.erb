@@ -1,0 +1,10 @@
+<div class="container">
+  <p id="notice"><%= notice %></p>
+  <h1>Portings</h1>
+          <% Session.where(session_state: :requested).each_with_index do |session, index| %>
+            <%= index.to_s + " : " + session.description + " " + User.find(session.user_id).full_name %><br>
+          <% end %>
+          <% Session.where(session_state: :scheduled).each_with_index do |session, index| %>
+            <%= index.to_s + " : " + session.description + " " + User.find(session.user_id).full_name %><br>
+          <% end %>
+</div>
