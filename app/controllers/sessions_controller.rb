@@ -107,7 +107,7 @@ class SessionsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def session_params
-      params.require(:session).permit(:session_type, :description, :comment, :finished_at, :vehicle, :session_state, :tuneProject, :project_file, :user_id, param_sets_attributes: [:productName, :productVersion, :mode, :id] )
+      params.require(:session).permit(:session_type, :description, :comment, :finished_at, :vehicle, :session_state, :tuneProject, :project_file, :user_id, :requestDate, :duration, param_sets_attributes: [:productName, :productVersion, :mode, :id] )
     end
 
     def parseTuneProject

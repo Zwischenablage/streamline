@@ -6,6 +6,29 @@
 
 }
 
+.Counter--green-white {
+  color: #2cbe4e !important;
+  background-color: #ffffff !important;
+}
+.Counter--orange-white {
+  color: #d15704 !important;
+  background-color: #ffffff !important;
+}
+
+.Counter--blue-white {
+  color: #0366d6 !important;
+  background-color: #ffffff !important;
+}
+.Counter--red-white {
+  color: #cb2431 !important;
+  background-color: #ffffff !important;
+}
+
+
+.State--orange { background-color: #d15704 !important; }
+.State--blue { background-color: #0366d6 !important; }
+
+
 .Header {
     background-color: #24292e;
     color: hsla(0,0%,100%,.75);

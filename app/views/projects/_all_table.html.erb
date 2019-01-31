@@ -1,0 +1,50 @@
+<div class="<%= getAnimationClass(session_state) %>">
+  <span title="Status: open" class="<%= getState(session_state) %>"><%= octicon getStateOcticon(session_state),width:20, height: 20 %> <%= session_state.capitalize %>  <span class="<%= getStateCounter(session_state) %>"><%= Session.where(session_state: session_state).count %></span></span>
+</div>
+<br><br>
+<div class="Box">
+  <div class="Box-header Box-header--blue">
+    <div class="container-lg clearfix">
+      <h3 class="Box-title"><div class="col-2 float-left">Project</div></h3>
+      <h3 class="Box-title"><div class="col-5 float-left">Description</div></h3>
+      <h3 class="Box-title"><div class="col-1 float-left">Schedule</div></h3>
+      <h3 class="Box-title"><div class="col-1 float-left">Duration</div></h3>
+      <h3 class="Box-title"><div class="col-2 float-left">Assigned</div></h3>
+      <h3 class="Box-title"><div style="text-align: right;" class="col-1 float-left">Actions</div></h3>
+    </div>
+  </div>
+    <% sessions.where(session_type: session_type).order("requestDate DESC").each do |session| %>
+    <div class="Box-row2 Box-row--hover-blue">
+      <div class="container-lg clearfix">
+        <div class="col-2 float-left">
+          <%= octicon(getOcticon(session_type), label: "directory", class: "octicon octicon-file-directory", width:14, height: 16, role: "img") %>
+          <%= session.project.customer.name + " " + session.project.name %>
+        </div>
+        <div class="col-5 float-left">
+          <%= link_to session.description, customer_project_session_path(session.project.customer, session.project, session), class: "branch-name" %>
+          <% if 1 %>
+            <div class="text-small text-gray-light">
+              <%= session.comment %>
+            </div>
+          <% end %>
+        </div>
+        <div class="col-1 float-left">
+          <%= session.requestDate %>
+        </div>
+        <div class="col-1 float-left">
+          <%= session.duration %>
+        </div>
+        <div class="col-2 float-left">
+          <%= User.find(session.user_id).full_name %>
+        </div>
+        <div class="col-1 float-right" style="text-align: right;">
+          <%= link_to octicon("pencil"), edit_customer_project_session_path(session.project.customer, session.project, session) %>
+          <%= link_to octicon("trashcan"), customer_project_session_path(session.project.customer, session.project, session),
+                    method: :delete,
+                    data: { confirm: 'Are you sure?' } %>
+        </div>
+      </div>
+      </div>
+    <% end %>
+</div>
+<br>

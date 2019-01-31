@@ -38,11 +38,11 @@
       <% when "log" %>
         <%= render :template => "projects/_log" %>
       <% when "porting" %>
-        <%= render :template => "projects/_session_table", locals: {session_type: :Porting, id_tag: "porting", active:""} %>
+        <%= render :template => "projects/_session_table", locals: {sessions: Session.all, session_type: :Porting, id_tag: "porting", active:""} %>
       <% when "apqm" %>
-        <%= render :template => "projects/_session_table", locals: {session_type: :APQM, id_tag: "apqm", active:""} %>
+        <%= render :template => "projects/_session_table", locals: {sessions: Session.all, session_type: :APQM, id_tag: "apqm", active:""} %>
       <% when "tuning" %>
-        <%= render :template => "projects/_session_table", locals: {session_type: :Tuning, id_tag: "tuning", active:""} %>
+        <%= render :template => "projects/_session_table", locals: {sessions: Session.all, session_type: :Tuning, id_tag: "tuning", active:""} %>
     <% end %>
     <% else %>
       <%= render :template => "projects/_info" %>

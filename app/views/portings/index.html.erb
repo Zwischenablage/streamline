@@ -1,10 +1,31 @@
-<div class="container">
-  <p id="notice"><%= notice %></p>
-  <h1>Portings</h1>
-          <% Session.where(session_state: :requested).each_with_index do |session, index| %>
-            <%= index.to_s + " : " + session.description + " " + User.find(session.user_id).full_name %><br>
-          <% end %>
-          <% Session.where(session_state: :scheduled).each_with_index do |session, index| %>
-            <%= index.to_s + " : " + session.description + " " + User.find(session.user_id).full_name %><br>
-          <% end %>
+<div role="main" class="application-main " data-commit-hovercards-enabled="">
+    <div class="pagehead repohead readability-menu experiment-repo-nav">
+      <div class="repohead-details-container clearfix container">
+      <p id="notice"><%= notice %></p>
+      <h1>Portings</h1>
+
+              </div>
+
+      </div>
+
+
+      <div class="container new-discussion-timeline experiment-repo-nav">
+
+
+        <% if Session.where(session_state: :requested).count %>
+        <% end %>
+        <%= render :template => "projects/_all_table", locals: {sessions: Session.where(session_state: :requested),session_state: :requested, session_type: :Porting}  %>
+
+        <% if Session.where(session_state: :feedback).count %>
+          <%= render :template => "projects/_all_table", locals: {sessions: Session.where(session_state: :feedback),session_state: :feedback, session_type: :Porting}  %>
+        <% end %>
+
+        <% if Session.where(session_state: :scheduled).count %>
+          <%= render :template => "projects/_all_table", locals: {sessions: Session.where(session_state: :scheduled),session_state: :scheduled, session_type: :Porting}  %>
+        <% end %>
+
+        <% if Session.where(session_state: :active).count %>
+          <%= render :template => "projects/_all_table", locals: {sessions: Session.where(session_state: :active),session_state: :active, session_type: :Porting}  %>
+        <% end %>
+
 </div>
