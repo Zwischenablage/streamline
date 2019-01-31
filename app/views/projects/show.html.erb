@@ -3,12 +3,6 @@
     <div id="js-repo-pjax-container" data-pjax-container="">
       <div class="pagehead repohead readability-menu experiment-repo-nav">
         <div class="repohead-details-container clearfix container">
-          <h1>
-            <%= octicon("repo") %>
-            <span class="author"><a href="#url" class="url fn" rel="author">cmwinters</a></span>
-            <span class="path-divider">/</span>
-            <strong><a href="#url">project</a></strong>
-          </h1>
         </div>
         <div class="container-lg px-3">
           <p id="notice"><%= notice %></p>
@@ -38,11 +32,11 @@
       <% when "log" %>
         <%= render :template => "projects/_log" %>
       <% when "porting" %>
-        <%= render :template => "projects/_session_table", locals: {sessions: Session.all, session_type: :Porting, id_tag: "porting", active:""} %>
+        <%= render :template => "projects/_session_table", locals: {sessions: @project.sessions, session_type: :Porting, id_tag: "porting", active:""} %>
       <% when "apqm" %>
-        <%= render :template => "projects/_session_table", locals: {sessions: Session.all, session_type: :APQM, id_tag: "apqm", active:""} %>
+        <%= render :template => "projects/_session_table", locals: {sessions: @project.sessions, session_type: :APQM, id_tag: "apqm", active:""} %>
       <% when "tuning" %>
-        <%= render :template => "projects/_session_table", locals: {sessions: Session.all, session_type: :Tuning, id_tag: "tuning", active:""} %>
+        <%= render :template => "projects/_session_table", locals: {sessions: @project.sessions, session_type: :Tuning, id_tag: "tuning", active:""} %>
     <% end %>
     <% else %>
       <%= render :template => "projects/_info" %>

@@ -1,0 +1,2 @@
+class ApqmsController < ApplicationController
+end

@@ -1,0 +1,15 @@
+<% if Session.where(session_state: :requested).where(session_type: session_type).count > 0 %>
+  <%= render :template => "projects/_all_table", locals: {sessions: Session.where(session_state: :requested),session_state: :requested, session_type: session_type}  %>
+<% end %>
+
+<% if Session.where(session_state: :feedback).where(session_type: session_type).count > 0 %>
+  <%= render :template => "projects/_all_table", locals: {sessions: Session.where(session_state: :feedback),session_state: :feedback, session_type: session_type}  %>
+<% end %>
+
+<% if Session.where(session_state: :scheduled).where(session_type: session_type).count > 0 %>
+  <%= render :template => "projects/_all_table", locals: {sessions: Session.where(session_state: :scheduled),session_state: :scheduled, session_type: session_type}  %>
+<% end %>
+
+<% if Session.where(session_state: :active).where(session_type: session_type).count > 0 %>
+  <%= render :template => "projects/_all_table", locals: {sessions: Session.where(session_state: :active),session_state: :active, session_type: session_type}  %>
+<% end %>

@@ -18,7 +18,7 @@
           <%= link_to session.session_type, class:"js-navigation-open" %>
         </div>
         <div class="col-4 float-left">
-          <%# link_to session.description, customer_project_session_path(@customer, @project, session), class: "branch-name" %>
+          <%= link_to session.description, customer_project_session_path(@customer, @project, session), class: "branch-name" %>
           <% if 1 %>
             <div class="text-small text-gray-light">
               <%= session.comment %>
@@ -39,8 +39,8 @@
           <%= session.vehicle %>
         </div>
         <div class="col-1 float-right" style="text-align: right;">
-          <%# link_to octicon("pencil"), edit_customer_project_session_path(@customer,@project, session) %>
-          <%# link_to octicon("trashcan"), customer_project_session_path(@customer, @project, session),
+          <%= link_to octicon("pencil"), edit_customer_project_session_path(@customer,@project, session) %>
+          <%= link_to octicon("trashcan"), customer_project_session_path(@customer, @project, session),
                     method: :delete,
                     data: { confirm: 'Are you sure?' } %>
         </div>

@@ -1,0 +1,2 @@
+class TuningsController < ApplicationController
+end
